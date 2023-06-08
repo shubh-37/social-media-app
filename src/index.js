@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
+import PostContextProvider from "./contexts/PostContextProvider";
 
 //call makeServer
 makeServer();
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <PostContextProvider>
+        <App />
+      </PostContextProvider>
     </Router>
   </React.StrictMode>
 );
