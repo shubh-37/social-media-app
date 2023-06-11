@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { postContext } from "../contexts/PostContextProvider";
+import "../css/homepage.css";
 
 export default function HomePage() {
   const { state } = useContext(postContext);
   return (
-    <div>
+    <div className="home">
       <div className="home-navigate">
         <span className="fa fa-home">Home</span>
         <span className="fa fa-rocket">Explore</span>
