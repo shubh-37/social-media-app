@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
@@ -7,10 +8,10 @@ export default function HomePage() {
   return (
     <div className="home">
       <div className="home-navigate">
-        <span className="fa fa-home">Home</span>
-        <span className="fa fa-rocket">Explore</span>
-        <span className="fa fa-bookmark-o">Bookmarks</span>
-        <span className="fa fa-user-o">Profile</span>
+        <NavLink to="/"><span className="fa fa-home">Home</span></NavLink>
+        <NavLink to="/explore"><span className="fa fa-rocket">Explore</span></NavLink>
+        <NavLink to="/bookmark"><span className="fa fa-bookmark-o">Bookmarks</span></NavLink>
+        <NavLink to="/profile"><span className="fa fa-user-o">Profile</span></NavLink>
         <button>Create New post</button>
       </div>
       <div className="main-content">
