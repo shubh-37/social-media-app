@@ -6,7 +6,12 @@ export default function reducer(state, action) {
         allPosts: action.payload,
         dataRef: action.payload,
       };
+    case "GET_ALL_USERS":
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
     default:
-      return {};
+      return state;
   }
 }
