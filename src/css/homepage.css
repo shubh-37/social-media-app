@@ -16,3 +16,8 @@
   gap: 1rem;
   grid-template-areas: "home-navigate main-content main-content side-bar";
 }
+
+.post-icons{
+  display: flex;
+  justify-content: space-around;
+}
