@@ -15,6 +15,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
   {
     _id: uuid(),
@@ -25,6 +27,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
   {
     _id: uuid(),
@@ -35,6 +39,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
   {
     _id: uuid(),
@@ -45,6 +51,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
   {
     _id: uuid(),
@@ -55,6 +63,8 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
   {
     _id: uuid(),
@@ -65,5 +75,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bookmarks: [],
+    bio: "",
+    portfolio_link: ""
   },
 ];
