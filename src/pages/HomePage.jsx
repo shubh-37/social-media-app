@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
@@ -7,21 +8,7 @@ export default function HomePage() {
   const { state } = useContext(postContext);
   return (
     <div className="home">
-      <div className="home-navigate">
-        <NavLink to="/">
-          <span className="fa fa-home">Home</span>
-        </NavLink>
-        <NavLink to="/explore">
-          <span className="fa fa-rocket">Explore</span>
-        </NavLink>
-        <NavLink to="/bookmark">
-          <span className="fa fa-bookmark-o">Bookmarks</span>
-        </NavLink>
-        <NavLink to="/profile">
-          <span className="fa fa-user-o">Profile</span>
-        </NavLink>
-        <button>Create New post</button>
-      </div>
+      <Navbar />
       <div className="main-content">
         <div className="create-post">
           <label htmlFor="new-post"></label>
@@ -55,30 +42,7 @@ export default function HomePage() {
           </ul>
         </div>
       </div>
-      <div className="sidebar">
-        <label htmlFor="search">Search</label>
-        <input
-          type="text"
-          name=""
-          id="search"
-          placeholder="Search people, post, anything"
-        />
-        <div>
-          <h2>Who to follow?</h2>
-          <button>
-            <span className="test">Following</span>
-            <span className="test2">Unfollow</span>
-          </button>
-          <ul>
-            {state?.allUsers?.map((item) => (
-              <li key={item._id}>
-                {item.username}
-                <button>Follow</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Sidebar />
     </div>
   );
 }
