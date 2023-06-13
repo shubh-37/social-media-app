@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
 import PostContextProvider from "./contexts/PostContextProvider";
+import AuthProvider from "./contexts/AuthContextProvider";
 
 //call makeServer
 makeServer();
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <PostContextProvider>
-        <App />
-      </PostContextProvider>
+      <AuthProvider>
+        <PostContextProvider>
+          <App />
+        </PostContextProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>
 );
