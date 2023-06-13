@@ -21,3 +21,12 @@
   display: flex;
   justify-content: space-around;
 }
+button .test2{
+  display: none;
+}
+button:hover .test{
+  display: none
+}
+button:hover .test2{
+  display: inline;
+}
