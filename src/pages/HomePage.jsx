@@ -65,6 +65,10 @@ export default function HomePage() {
         />
         <div>
           <h2>Who to follow?</h2>
+          <button>
+            <span className="test">Following</span>
+            <span className="test2">Unfollow</span>
+          </button>
           <ul>
             {state?.allUsers?.map((item) => (
               <li key={item._id}>
