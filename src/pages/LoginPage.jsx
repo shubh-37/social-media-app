@@ -22,6 +22,7 @@ export default function Login() {
         >
           Guest login
         </button>
+        <Link to="/profile">Profile</Link>
       </form>
     </div>
   );
