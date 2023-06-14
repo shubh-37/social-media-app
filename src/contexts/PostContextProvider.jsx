@@ -9,6 +9,7 @@ export default function PostContextProvider({ children }) {
     allPosts: [],
     dataRef: [],
     allUsers: [],
+    loggedUserPosts: [],
   });
   async function getAllPosts() {
     try {
@@ -34,6 +35,6 @@ export default function PostContextProvider({ children }) {
     getAllUsers();
   }, []);
   return (
-    <postContext.Provider value={{ state }}>{children}</postContext.Provider>
+    <postContext.Provider value={{ state, dispatch }}>{children}</postContext.Provider>
   );
 }
