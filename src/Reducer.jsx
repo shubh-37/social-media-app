@@ -11,6 +11,11 @@ export default function reducer(state, action) {
         ...state,
         allUsers: action.payload,
       };
+    case "ADD_USER_POST":
+      return {
+        ...state,
+        loggedUserPosts: action.payload,
+      };
     default:
       return state;
   }
