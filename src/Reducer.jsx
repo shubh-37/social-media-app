@@ -65,6 +65,10 @@ export default function reducer(state, action) {
         allPosts: post,
       };
     }
+    case "USER": return {
+      ...state,
+      user: action.payload
+    }
     default:
       return state;
   }
