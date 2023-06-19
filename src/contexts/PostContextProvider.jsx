@@ -5,11 +5,15 @@ import reducer from "../Reducer";
 export const postContext = createContext();
 
 export default function PostContextProvider({ children }) {
+  const token = localStorage.getItem("token");
+  const userData = JSON.parse(localStorage.getItem("user"));
+
   const [state, dispatch] = useReducer(reducer, {
     allPosts: [],
     dataRef: [],
     allUsers: [],
     loggedUserPosts: [],
+    bookmarks: []
   });
   async function getAllPosts() {
     try {
@@ -30,11 +34,48 @@ export default function PostContextProvider({ children }) {
       console.log(error);
     }
   }
+
+  async function likeHandler(id) {
+    try {
+      const response = await fetch(`/api/posts/like/${id}`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+      });
+      const data = await response.json();
+      dispatch({
+        type: "LIKE_POST",
+        payload: { post: data.posts, id: id, user: userData.username },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function bookmarkHandler(id){
+    console.log(id);
+    try {
+      const response = await fetch(`/api/users/bookmark/${id}`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+        }
+      });
+      const data = await response.json();
+      const bookmarkedPost = state.allPosts.filter(item => data.bookmarks.includes(item._id));
+      dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost});
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     getAllPosts();
     getAllUsers();
   }, []);
   return (
-    <postContext.Provider value={{ state, dispatch }}>{children}</postContext.Provider>
+    <postContext.Provider value={{ state, dispatch, likeHandler, bookmarkHandler }}>
+      {children}
+    </postContext.Provider>
   );
 }
