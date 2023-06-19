@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { postContext } from "../contexts/PostContextProvider";
 
 export default function Sidebar() {
-  const { state } = useContext(postContext);
+  const { state, followUser } = useContext(postContext);
   return (
     <div className="sidebar">
       <label htmlFor="search">Search</label>
@@ -22,7 +22,7 @@ export default function Sidebar() {
           {state?.allUsers?.map((item) => (
             <li key={item._id}>
               {item.username}
-              <button>Follow</button>
+              <button onClick={() => followUser(item._id)}>Follow</button>
             </li>
           ))}
         </ul>
