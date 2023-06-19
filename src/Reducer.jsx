@@ -30,7 +30,7 @@ export default function reducer(state, action) {
                   },
                 },
               ]
-            : [...acc, {...item}],
+            : [...acc, { ...item }],
         []
       );
       return {
@@ -38,9 +38,32 @@ export default function reducer(state, action) {
         allPosts: post,
       };
     }
-    case "BOOKMARK_POST": return {
-      ...state,
-      bookmarks: action.payload
+    case "BOOKMARK_POST":
+      return {
+        ...state,
+        bookmarks: action.payload,
+      };
+    case "DISLIKE_POST": {
+      const post = action.payload.post?.reduce(
+        (acc, item) =>
+          item._id === action.payload.id
+            ? [
+                ...acc,
+                {
+                  ...item,
+                  likes: {
+                    ...item.likes,
+                    dislikedBy: [...item.likes.likedBy, action.payload.user],
+                  },
+                },
+              ]
+            : [...acc, { ...item }],
+        []
+      );
+      return {
+        ...state,
+        allPosts: post,
+      };
     }
     default:
       return state;
