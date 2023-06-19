@@ -5,7 +5,7 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { state, likeHandler, bookmarkHandler, removeBookmarkHandler } =
+  const { state, likeHandler, bookmarkHandler, removeBookmarkHandler, dislikePostHandler } =
     useContext(postContext);
   const user = JSON.parse(localStorage.getItem("user"));
   return (
@@ -34,8 +34,8 @@ export default function HomePage() {
                 <h3>{item.username}</h3>
                 <p>{item.content}</p>
                 <div className="post-icons">
-                  {item.likes.likedBy.includes(user.username) ? (
-                    <span className="fa fa-heart">{item.likes.likeCount}</span>
+                  {item.likes.likedBy.find(({ username }) => username === user.username) ? (
+                    <span className="fa fa-heart" onClick={() => dislikePostHandler(item._id)}>{item.likes.likeCount}</span>
                   ) : (
                     <span
                       className="	fa fa-heart-o"

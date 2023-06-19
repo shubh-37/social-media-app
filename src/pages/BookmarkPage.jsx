@@ -19,7 +19,6 @@ export default function Bookmark() {
         <ul>
           {state?.bookmarks?.map((item) => (
             <li key={item._id}>
-              {console.log(item)}
               <h3>{item.username}</h3>
               <p>{item.content}</p>
               <div className="post-icons">
