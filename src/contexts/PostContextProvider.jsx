@@ -13,7 +13,7 @@ export default function PostContextProvider({ children }) {
     dataRef: [],
     allUsers: [],
     loggedUserPosts: [],
-    bookmarks: []
+    bookmarks: [],
   });
   async function getAllPosts() {
     try {
@@ -53,33 +53,55 @@ export default function PostContextProvider({ children }) {
     }
   }
 
-  async function bookmarkHandler(id){
+  async function bookmarkHandler(id) {
     try {
       const response = await fetch(`/api/users/bookmark/${id}`, {
         method: "POST",
         headers: {
           authorization: token,
-        }
+        },
       });
       const data = await response.json();
-      const bookmarkedPost = state.allPosts.filter(item => data.bookmarks.includes(item._id));
-      dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost});
+      const bookmarkedPost = state.allPosts.filter((item) =>
+        data.bookmarks.includes(item._id)
+      );
+      dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function removeBookmarkHandler(id){
+  async function removeBookmarkHandler(id) {
     try {
       const response = await fetch(`/api/users/remove-bookmark/${id}`, {
         method: "POST",
         headers: {
-          authorization: token
-        }
+          authorization: token,
+        },
       });
       const data = await response.json();
-      const bookmarkedPost = state.allPosts.filter(item => data.bookmarks.includes(item._id));
-      dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost});
+      const bookmarkedPost = state.allPosts.filter((item) =>
+        data.bookmarks.includes(item._id)
+      );
+      dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function dislikePostHandler(id) {
+    try {
+      const response = await fetch(`/api/posts/dislike/${id}`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+      });
+      const data = await response.json();
+      dispatch({
+        type: "DISLIKE_POST",
+        payload: { post: data.posts, id: id, user: userData.username },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +111,16 @@ export default function PostContextProvider({ children }) {
     getAllUsers();
   }, []);
   return (
-    <postContext.Provider value={{ state, dispatch, likeHandler, bookmarkHandler, removeBookmarkHandler }}>
+    <postContext.Provider
+      value={{
+        state,
+        dispatch,
+        likeHandler,
+        bookmarkHandler,
+        removeBookmarkHandler,
+        dislikePostHandler,
+      }}
+    >
       {children}
     </postContext.Provider>
   );
