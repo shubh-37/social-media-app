@@ -12,6 +12,7 @@ export default function PostContextProvider({ children }) {
     allPosts: [],
     dataRef: [],
     allUsers: [],
+    user: {},
     loggedUserPosts: [],
     bookmarks: [],
   });
@@ -106,6 +107,21 @@ export default function PostContextProvider({ children }) {
       console.log(error);
     }
   }
+
+  async function followUser(id){
+    try {
+      const response = await fetch(`api/users/follow/${id}`,{
+        method: "POST",
+        headers: {
+          authorization: token
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     getAllPosts();
     getAllUsers();
@@ -119,6 +135,7 @@ export default function PostContextProvider({ children }) {
         bookmarkHandler,
         removeBookmarkHandler,
         dislikePostHandler,
+        followUser
       }}
     >
       {children}
