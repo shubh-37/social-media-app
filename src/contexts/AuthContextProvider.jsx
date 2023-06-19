@@ -1,12 +1,13 @@
 import axios from "axios";
+import { useContext } from "react";
 // import { useEffect } from "react";
 import { createContext } from "react";
+import { postContext } from "./PostContextProvider";
 
 export const authContext = createContext();
 
 export default function AuthProvider({ children }) {
-  // const { state, dispatch } = useContext(postContext);
-  // const userData = localStorage.getItem("user");
+  const { dispatch } = useContext(postContext);
 
   async function guestLogin() {
     const guestUser = {
@@ -15,9 +16,8 @@ export default function AuthProvider({ children }) {
     };
     try {
       const response = await axios.post("/api/auth/login", guestUser);
-      const value = JSON.stringify(response.data.foundUser);
       localStorage.setItem("token", response.data.encodedToken);
-      localStorage.setItem("user", value);
+      dispatch({type: "USER", payload: response.data.foundUser});
     } catch (error) {
       console.log(error);
     }
