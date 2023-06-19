@@ -5,7 +5,8 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { state, likeHandler, bookmarkHandler } = useContext(postContext);
+  const { state, likeHandler, bookmarkHandler, removeBookmarkHandler } =
+    useContext(postContext);
   const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="home">
@@ -46,10 +47,17 @@ export default function HomePage() {
 
                   <span className="fa fa-comment-o"></span>
                   <span className="fa fa-share-alt"></span>
-                  <span
-                    className="fa fa-bookmark-o"
-                    onClick={() => bookmarkHandler(item._id)}
-                  ></span>
+                  {state.bookmarks.includes(item) ? (
+                    <span
+                      className="fa fa-bookmark"
+                      onClick={() => removeBookmarkHandler(item._id)}
+                    ></span>
+                  ) : (
+                    <span
+                      className="fa fa-bookmark-o"
+                      onClick={() => bookmarkHandler(item._id)}
+                    ></span>
+                  )}
                 </div>
               </li>
             ))}
