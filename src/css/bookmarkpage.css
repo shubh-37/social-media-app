@@ -1,0 +1,10 @@
+.bookmark-main{
+  grid-area: bookmark-main;
+}
+
+.bookmark-parent{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  grid-template-areas: "home-navigate bookmark-main bookmark-main side-bar";
+}
