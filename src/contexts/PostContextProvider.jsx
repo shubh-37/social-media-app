@@ -6,7 +6,6 @@ export const postContext = createContext();
 
 export default function PostContextProvider({ children }) {
   const token = localStorage.getItem("token");
-  const userData = JSON.parse(localStorage.getItem("user"));
 
   const [state, dispatch] = useReducer(reducer, {
     allPosts: [],
@@ -47,7 +46,7 @@ export default function PostContextProvider({ children }) {
       const data = await response.json();
       dispatch({
         type: "LIKE_POST",
-        payload: { post: data.posts, id: id, user: userData.username },
+        payload: { post: data.posts, id: id },
       });
     } catch (error) {
       console.log(error);
@@ -101,23 +100,54 @@ export default function PostContextProvider({ children }) {
       const data = await response.json();
       dispatch({
         type: "DISLIKE_POST",
-        payload: { post: data.posts, id: id, user: userData.username },
+        payload: { post: data.posts, id: id },
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function followUser(id){
+  async function followUser(id) {
     try {
-      const response = await fetch(`api/users/follow/${id}`,{
+      const response = await fetch(`api/users/follow/${id}`, {
         method: "POST",
         headers: {
-          authorization: token
-        }
+          authorization: token,
+        },
       });
       const data = await response.json();
-      console.log(data);
+      dispatch({ type: "USER", payload: data.user });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function unfollowUser(id) {
+    try {
+      const response = await fetch(`api/users/unfollow/${id}/`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+      });
+      const data = await response.json();
+      dispatch({ type: "USER", payload: data.user });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function createPost(content) {
+    try {
+      const response = await fetch("/api/posts/", {
+        method: "POST",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ postData: { content } }),
+      });
+      const data = await response.json();
+      dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
     } catch (error) {
       console.log(error);
     }
@@ -135,7 +165,9 @@ export default function PostContextProvider({ children }) {
         bookmarkHandler,
         removeBookmarkHandler,
         dislikePostHandler,
-        followUser
+        followUser,
+        unfollowUser,
+        createPost,
       }}
     >
       {children}
