@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useContext } from "react";
-// import { useEffect } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postContext } from "./PostContextProvider";
@@ -30,20 +29,8 @@ export default function AuthProvider({ children }) {
       console.log(error);
     }
   }
-  // async function getUserPosts(username) {
-  //   try {
-  //     const response = await axios(`/api/posts/user/${username}`);
-  //     // console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   getUserPosts(userData.username);
-  // }, [])
-
-  function logoutUser(){
+  function logoutUser() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIslogin(false);
