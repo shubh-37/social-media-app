@@ -1,13 +1,17 @@
 import axios from "axios";
+import { useState } from "react";
 import { useContext } from "react";
 // import { useEffect } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { postContext } from "./PostContextProvider";
 
 export const authContext = createContext();
 
 export default function AuthProvider({ children }) {
   const { dispatch } = useContext(postContext);
+  const [isLogin, setIslogin] = useState(false);
+  const navigate = useNavigate();
 
   async function guestLogin() {
     const guestUser = {
@@ -16,8 +20,12 @@ export default function AuthProvider({ children }) {
     };
     try {
       const response = await axios.post("/api/auth/login", guestUser);
-      localStorage.setItem("token", response.data.encodedToken);
-      dispatch({type: "USER", payload: response.data.foundUser});
+      if (response.data.encodedToken) {
+        localStorage.setItem("token", response.data.encodedToken);
+        dispatch({ type: "USER", payload: response.data.foundUser });
+        setIslogin(true);
+        navigate("/profile");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +42,14 @@ export default function AuthProvider({ children }) {
   // useEffect(() => {
   //   getUserPosts(userData.username);
   // }, [])
+
+  function logoutUser(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIslogin(false);
+  }
   return (
-    <authContext.Provider value={{ guestLogin }}>
+    <authContext.Provider value={{ guestLogin, isLogin, logoutUser }}>
       {children}
     </authContext.Provider>
   );
