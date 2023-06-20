@@ -2,21 +2,23 @@ import { useContext } from "react";
 import { postContext } from "../contexts/PostContextProvider";
 
 export default function Sidebar() {
-  const { state, followUser, unfollowUser } = useContext(postContext);
+  const { state, followUser, unfollowUser, setSearch, searchedUsers } =
+    useContext(postContext);
   return (
     <div className="sidebar">
       <label htmlFor="search">Search</label>
       <input
+        onChange={(e) => setSearch(e.target.value)}
         type="text"
         name=""
         id="search"
-        placeholder="Search people, post, anything"
+        placeholder="Search people..."
       />
       <div>
         <h2>Who to follow?</h2>
 
         <ul>
-          {state?.allUsers
+          {searchedUsers
             ?.filter((item) => item.username !== state.user.username)
             .map((item) => (
               <li key={item._id}>
@@ -27,7 +29,12 @@ export default function Sidebar() {
                     {item.username}
                     <button>
                       <span className="test">Following</span>
-                      <span className="test2" onClick={() => unfollowUser(item._id)}>Unfollow</span>
+                      <span
+                        className="test2"
+                        onClick={() => unfollowUser(item._id)}
+                      >
+                        Unfollow
+                      </span>
                     </button>
                   </>
                 ) : (

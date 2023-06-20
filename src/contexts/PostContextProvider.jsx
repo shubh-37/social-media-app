@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { useState } from "react";
 import { createContext, useEffect } from "react";
 import reducer from "../Reducer";
 
@@ -15,6 +16,15 @@ export default function PostContextProvider({ children }) {
     loggedUserPosts: [],
     bookmarks: [],
   });
+  const [search, setSearch] = useState("");
+
+  const searchedUsers =
+    search.length > 0
+      ? state.allUsers?.filter(({ username }) =>
+          username.toLowerCase().includes(search.toLowerCase())
+        )
+      : state.allUsers;
+
   async function getAllPosts() {
     try {
       const response = await fetch("/api/posts");
@@ -168,6 +178,8 @@ export default function PostContextProvider({ children }) {
         followUser,
         unfollowUser,
         createPost,
+        setSearch,
+        searchedUsers
       }}
     >
       {children}
