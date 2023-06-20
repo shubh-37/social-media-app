@@ -97,7 +97,7 @@ export const createPostHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error:error.message,
       }
     );
   }
