@@ -5,9 +5,18 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { state, likeHandler, bookmarkHandler, removeBookmarkHandler, dislikePostHandler } =
-    useContext(postContext);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const {
+    state,
+    likeHandler,
+    bookmarkHandler,
+    removeBookmarkHandler,
+    dislikePostHandler,
+    createPost,
+  } = useContext(postContext);
+  let content = "";
+  function textChange(e) {
+    content = e.target.value;
+  }
   return (
     <div className="home">
       <Navbar />
@@ -15,6 +24,7 @@ export default function HomePage() {
         <div className="create-post">
           <label htmlFor="new-post"></label>
           <input
+            onChange={(e) => textChange(e)}
             type="text"
             name=""
             id="new-post"
@@ -23,7 +33,7 @@ export default function HomePage() {
           <div>
             <span className="fa fa-image"></span>
             <span className="fa fa-smile-o"></span>
-            <button>Post</button>
+            <button onClick={() => createPost(content)}>Post</button>
           </div>
         </div>
         <div className="latest-post">
@@ -34,8 +44,15 @@ export default function HomePage() {
                 <h3>{item.username}</h3>
                 <p>{item.content}</p>
                 <div className="post-icons">
-                  {item.likes.likedBy.find(({ username }) => username === user.username) ? (
-                    <span className="fa fa-heart" onClick={() => dislikePostHandler(item._id)}>{item.likes.likeCount}</span>
+                  {item.likes.likedBy.find(
+                    ({ username }) => username === state.user.username
+                  ) ? (
+                    <span
+                      className="fa fa-heart"
+                      onClick={() => dislikePostHandler(item._id)}
+                    >
+                      {item.likes.likeCount}
+                    </span>
                   ) : (
                     <span
                       className="	fa fa-heart-o"
