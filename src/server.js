@@ -65,6 +65,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.get("/posts", getAllpostsHandler.bind(this));
       //done
       this.get("/posts/:postId", getPostHandler.bind(this));
+      //done
       this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));
 
       // post routes (private)
@@ -78,6 +79,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
 
       // user routes (public)
+      //done
       this.get("/users", getAllUsersHandler.bind(this));
       this.get("/users/:userId", getUserHandler.bind(this));
 
