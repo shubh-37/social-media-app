@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <div className="home-navigate">
@@ -15,6 +15,7 @@ export default function Navbar() {
         <span className="fa fa-user-o">Profile</span>
       </NavLink>
       <button>Create New post</button>
+      <Link to="/login">Login</Link>
     </div>
   );
 }
