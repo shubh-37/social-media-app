@@ -7,7 +7,6 @@ import "../css/bookmarkpage.css";
 export default function Bookmark() {
   const { state, likeHandler, removeBookmarkHandler, bookmarkHandler } =
     useContext(postContext);
-  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="bookmark-parent">
       <Navbar />
@@ -22,7 +21,7 @@ export default function Bookmark() {
               <h3>{item.username}</h3>
               <p>{item.content}</p>
               <div className="post-icons">
-                {item.likes.likedBy.includes(user.username) ? (
+                {item.likes.likedBy.includes(state.user.username) ? (
                   <span className="fa fa-heart">{item.likes.likeCount}</span>
                 ) : (
                   <span
