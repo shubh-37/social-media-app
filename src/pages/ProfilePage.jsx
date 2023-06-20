@@ -8,10 +8,13 @@ import Sidebar from "../components/Sidebar";
 import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/profilepage.css";
+import { useState } from "react";
+import ProfileModal from "../components/ProfileModal";
 
 export default function Profile() {
   const { state, dispatch } = useContext(postContext);
   const { logoutUser } = useContext(authContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     (async function getUserPosts() {
@@ -31,6 +34,9 @@ export default function Profile() {
         <p>{`@${state.user?.username}`}</p>
         <p>{state.user?.following?.length} following</p>
         <p>{state.user?.followers?.length} follower</p>
+        <p>{state.user?.bio}</p>
+        <p>{state.user?.portfolio_link}</p>
+        <button onClick={() => setIsOpen(true)}>Edit profile</button>
         <ul>
           {state?.loggedUserPosts?.map((item) => (
             <li key={item._id}>{item.content}</li>
@@ -39,6 +45,7 @@ export default function Profile() {
         <button onClick={() => logoutUser()}>Logout</button>
       </div>
       <Sidebar />
+      {isOpen && <ProfileModal />}
     </div>
   );
 }
