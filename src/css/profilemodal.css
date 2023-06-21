@@ -2,7 +2,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: all;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -29,7 +28,11 @@
 }
 
 .modal-body input{
-  border: 0px 0px 1px 0px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid rgba(0,0,0,0.35);
+  box-shadow: rgba(0,0,0,0.35) 0px 1px 10px;
 }
 
 .close-btn{
@@ -41,6 +44,7 @@
   background-color: transparent;
   border: none;
   font-size: medium;
+  cursor: pointer;
 }
 
 .modal-container .modal-body{
@@ -49,7 +53,6 @@
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  z-index: 999999999999;
 }
 
 .modal-container .modal-footer{
@@ -71,4 +74,5 @@
 
 .modal-container .modal-footer .cancel-btn{
   background-color: crimson;
+  cursor: pointer;
 }
