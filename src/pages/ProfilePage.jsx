@@ -45,7 +45,7 @@ export default function Profile() {
         <button onClick={() => logoutUser()}>Logout</button>
       </div>
       <Sidebar />
-      {isOpen && <ProfileModal />}
+      {isOpen && <ProfileModal closeModal={setIsOpen}/>}
     </div>
   );
 }

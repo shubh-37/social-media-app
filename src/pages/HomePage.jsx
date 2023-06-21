@@ -64,7 +64,7 @@ export default function HomePage() {
 
                   <span className="fa fa-comment-o"></span>
                   <span className="fa fa-share-alt"></span>
-                  {state.bookmarks.includes(item) ? (
+                  {state.user?.bookmarks?.includes(item) ? (
                     <span
                       className="fa fa-bookmark"
                       onClick={() => removeBookmarkHandler(item._id)}
