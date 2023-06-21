@@ -13,10 +13,10 @@ export default function Bookmark() {
       <div className="bookmark-main">
         <h2>This is the bookmark page</h2>
         <h3>
-          {state.bookmarks.length === 0 && <p>There are no bookmarked posts</p>}
+          {state.user?.bookmarks?.length === 0 && <p>There are no bookmarked posts</p>}
         </h3>
         <ul>
-          {state?.bookmarks?.map((item) => (
+          {state.user?.bookmarks?.map((item) => (
             <li key={item._id}>
               <h3>{item.username}</h3>
               <p>{item.content}</p>
@@ -34,7 +34,7 @@ export default function Bookmark() {
 
                 <span className="fa fa-comment-o"></span>
                 <span className="fa fa-share-alt"></span>
-                {state.bookmarks.includes(item) ? (
+                {state.user?.bookmarks?.includes(item) ? (
                   <span
                     className="fa fa-bookmark"
                     onClick={() => removeBookmarkHandler(item._id)}
