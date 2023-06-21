@@ -24,7 +24,10 @@ export default function reducer(state, action) {
     case "BOOKMARK_POST":
       return {
         ...state,
-        bookmarks: action.payload,
+        user: {
+          ...state.user,
+          bookmarks: action.payload,
+        },
       };
     case "DISLIKE_POST":
       return {
