@@ -14,7 +14,6 @@ export default function PostContextProvider({ children }) {
     allUsers: [],
     user: {},
     loggedUserPosts: [],
-    bookmarks: [],
   });
   const [search, setSearch] = useState("");
 
@@ -179,7 +178,7 @@ export default function PostContextProvider({ children }) {
         unfollowUser,
         createPost,
         setSearch,
-        searchedUsers
+        searchedUsers,
       }}
     >
       {children}
