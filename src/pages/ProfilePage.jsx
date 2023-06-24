@@ -38,12 +38,13 @@ export default function Profile() {
       }
     })();
   }, []);
-  console.log(state.user.avatar);
   return (
     <div className="profile-parent">
       <Navbar />
       <div className="profile-main">
-        <img src={state.user?.avatar} alt="" />
+        <div className="avatar-img">
+          <img src={state.user?.avatar} alt="" />
+        </div>
         <h2>{`${state.user?.firstName} ${state.user?.lastName}`}</h2>
         <p>{`@${state.user?.username}`}</p>
         <p>{state.user?.following?.length} following</p>
