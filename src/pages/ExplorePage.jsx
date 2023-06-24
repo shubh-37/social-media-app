@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Navbar from "../components/Navbar";
+import PostCard from "../components/PostCard";
 import Sidebar from "../components/Sidebar";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/explorepage.css";
@@ -15,14 +16,15 @@ export default function Explore() {
         <h2>Showing all posts</h2>
         <ul>
           {state?.allPosts?.map((item) => (
-            <li key={item._id}>
-              <h3>{item.username}</h3>
-              <p>{item.content}</p>
-              <span className="	fa fa-heart-o"></span>
-              <span className="fa fa-comment-o"></span>
-              <span className="fa fa-share-alt"></span>
-              <span className="fa fa-bookmark-o"></span>
-            </li>
+            // <li key={item._id}>
+            //   <h3>{item.username}</h3>
+            //   <p>{item.content}</p>
+            //   <span className="	fa fa-heart-o"></span>
+            //   <span className="fa fa-comment-o"></span>
+            //   <span className="fa fa-share-alt"></span>
+            //   <span className="fa fa-bookmark-o"></span>
+            // </li>
+            <PostCard item={item} />
           ))}
         </ul>
       </div>

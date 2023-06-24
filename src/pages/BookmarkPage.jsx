@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Navbar from "../components/Navbar";
+import PostCard from "../components/PostCard";
 import Sidebar from "../components/Sidebar";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/bookmarkpage.css";
@@ -17,36 +18,37 @@ export default function Bookmark() {
         </h3>
         <ul>
           {state.user?.bookmarks?.map((item) => (
-            <li key={item._id}>
-              <h3>{item.username}</h3>
-              <p>{item.content}</p>
-              <div className="post-icons">
-                {item.likes.likedBy.includes(state.user.username) ? (
-                  <span className="fa fa-heart">{item.likes.likeCount}</span>
-                ) : (
-                  <span
-                    className="	fa fa-heart-o"
-                    onClick={() => likeHandler(item._id)}
-                  >
-                    {item.likes.likeCount}
-                  </span>
-                )}
+            // <li key={item._id}>
+            //   <h3>{item.username}</h3>
+            //   <p>{item.content}</p>
+            //   <div className="post-icons">
+            //     {item.likes.likedBy.includes(state.user.username) ? (
+            //       <span className="fa fa-heart">{item.likes.likeCount}</span>
+            //     ) : (
+            //       <span
+            //         className="	fa fa-heart-o"
+            //         onClick={() => likeHandler(item._id)}
+            //       >
+            //         {item.likes.likeCount}
+            //       </span>
+            //     )}
 
-                <span className="fa fa-comment-o"></span>
-                <span className="fa fa-share-alt"></span>
-                {state.user?.bookmarks?.includes(item) ? (
-                  <span
-                    className="fa fa-bookmark"
-                    onClick={() => removeBookmarkHandler(item._id)}
-                  ></span>
-                ) : (
-                  <span
-                    className="fa fa-bookmark-o"
-                    onClick={() => bookmarkHandler(item._id)}
-                  ></span>
-                )}
-              </div>
-            </li>
+            //     <span className="fa fa-comment-o"></span>
+            //     <span className="fa fa-share-alt"></span>
+            //     {state.user?.bookmarks?.includes(item) ? (
+            //       <span
+            //         className="fa fa-bookmark"
+            //         onClick={() => removeBookmarkHandler(item._id)}
+            //       ></span>
+            //     ) : (
+            //       <span
+            //         className="fa fa-bookmark-o"
+            //         onClick={() => bookmarkHandler(item._id)}
+            //       ></span>
+            //     )}
+            //   </div>
+            // </li>
+            <PostCard item={item} />
           ))}
         </ul>
       </div>
