@@ -14,9 +14,9 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
   {
     _id: uuid(),
@@ -26,9 +26,9 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
   {
     _id: uuid(),
@@ -38,9 +38,9 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
   {
     _id: uuid(),
@@ -50,9 +50,9 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
   {
     _id: uuid(),
@@ -62,9 +62,9 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
   {
     _id: uuid(),
@@ -74,8 +74,8 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bookmarks: [],
     bio: "",
-    portfolio_link: ""
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
 ];
