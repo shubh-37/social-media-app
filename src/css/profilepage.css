@@ -9,3 +9,14 @@
   gap: 1rem;
   grid-template-areas: "home-navigate profile-main profile-main side-bar";
 }
+
+.avatar-img{
+  margin: auto;
+  width: 15%;
+  height: 20vh;
+  margin-bottom: 2rem;
+}
+
+.avatar-img img{
+  width: 100%;
+}
