@@ -49,14 +49,12 @@ export default function Profile() {
         <p>{`@${state.user?.username}`}</p>
         <p>{state.user?.following?.length} following</p>
         <p>{state.user?.followers?.length} follower</p>
-        <p>
-          {state.user?.bio ? <p>Bio: {state.user?.bio}</p> : <p>Add a bio</p>}
-        </p>
+        <p>{state.user?.bio ? <>Bio: {state.user?.bio} </> : <>Add a bio</>}</p>
         <p>
           {state.user?.portfolio_link ? (
-            <p>Portfolio-url: {state.user?.portfolio_link}</p>
+            <>Portfolio-url: {state.user?.portfolio_link}</>
           ) : (
-            <p>Add your portfolio url</p>
+            <>Add your portfolio url</>
           )}
         </p>
         <button onClick={() => setIsOpen(true)}>Edit profile</button>
