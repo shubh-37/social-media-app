@@ -39,6 +39,17 @@ export default function reducer(state, action) {
         ...state,
         user: action.payload,
       };
+    case "EDIT_USER":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          bio: action.payload.bio,
+          portfolio_link: action.payload.portfolio_link,
+        },
+      };
     default:
       return state;
   }
