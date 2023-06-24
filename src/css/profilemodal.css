@@ -70,9 +70,9 @@
   color: white;
   border-radius: 0.3rem;
   font-size: medium;
+  cursor: pointer;
 }
 
 .modal-container .modal-footer .cancel-btn{
   background-color: crimson;
-  cursor: pointer;
 }
