@@ -1,0 +1,12 @@
+/* .heading-post{
+  display: flex;
+  flex-direction: column;
+} */
+
+.username{
+  display: inline;
+}
+
+/* .fa-ellipsis-v{
+  align-self: flex-end;
+} */
