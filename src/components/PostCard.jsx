@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { postContext } from "../contexts/PostContextProvider";
+import "../css/postcard.css";
 
 export default function PostCard({ item }) {
   const {
@@ -11,7 +12,13 @@ export default function PostCard({ item }) {
   } = useContext(postContext);
   return (
     <>
-      <h3>{item.username}</h3>
+      <div className="heading-post">
+        <h3 className="username">{item.username}</h3>
+        {item.username === state.user.username && (
+          <span className="fa fa-ellipsis-v"></span>
+        )}
+      </div>
+
       <p>{item.content}</p>
       <div className="post-icons">
         {item.likes.likedBy.find(
@@ -31,7 +38,9 @@ export default function PostCard({ item }) {
 
         <span className="fa fa-comment-o"></span>
         <span className="fa fa-share-alt"></span>
-        {state.user?.bookmarks?.includes(item) ? (
+        {state.user?.bookmarks?.find(
+          ({ _id }) => _id === item._id
+        ) ? (
           <span
             className="fa fa-bookmark"
             onClick={() => removeBookmarkHandler(item._id)}
