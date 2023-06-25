@@ -8,6 +8,7 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/profilepage.css";
 import { useState } from "react";
 import ProfileModal from "../components/ProfileModal";
+import PostCard from "../components/PostCard";
 
 export default function Profile() {
   const { state, dispatch } = useContext(postContext);
@@ -60,7 +61,9 @@ export default function Profile() {
         <button onClick={() => setIsOpen(true)}>Edit profile</button>
         <ul>
           {state?.loggedUserPosts?.map((item) => (
-            <li key={item._id}>{item.content}</li>
+            <li key={item._id}>
+              <PostCard item={item} />
+            </li>
           ))}
         </ul>
         <button onClick={() => logoutUser()}>Logout</button>
