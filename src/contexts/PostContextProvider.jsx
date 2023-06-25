@@ -161,6 +161,21 @@ export default function PostContextProvider({ children }) {
       console.log(error);
     }
   }
+
+  async function deletePost(id) {
+    try {
+      const response = await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: token,
+        },
+      });
+      const data = await response.json();
+      dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     getAllPosts();
     getAllUsers();
@@ -179,6 +194,7 @@ export default function PostContextProvider({ children }) {
         createPost,
         setSearch,
         searchedUsers,
+        deletePost,
       }}
     >
       {children}
