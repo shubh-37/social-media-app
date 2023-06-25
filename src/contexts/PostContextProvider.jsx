@@ -71,8 +71,8 @@ export default function PostContextProvider({ children }) {
         },
       });
       const data = await response.json();
-      const bookmarkedPost = state.allPosts.filter((item) =>
-        data.bookmarks.includes(item._id)
+      const bookmarkedPost = state?.allPosts?.filter((item) =>
+        data.bookmarks?.find(({ _id }) => _id === item._id)
       );
       dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost });
     } catch (error) {
@@ -89,8 +89,8 @@ export default function PostContextProvider({ children }) {
         },
       });
       const data = await response.json();
-      const bookmarkedPost = state.allPosts.filter((item) =>
-        data.bookmarks.includes(item._id)
+      const bookmarkedPost = state?.allPosts?.filter((item) =>
+        data.bookmarks?.find(({ _id }) => _id === item._id)
       );
       dispatch({ type: "BOOKMARK_POST", payload: bookmarkedPost });
     } catch (error) {
