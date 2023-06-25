@@ -5,6 +5,7 @@
 
 .username{
   display: inline;
+  margin: 1rem;
 }
 
 /* .fa-ellipsis-v{
