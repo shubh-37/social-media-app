@@ -163,6 +163,22 @@ export default function PostContextProvider({ children }) {
       console.log(error);
     }
   }
+  async function editPost(id, content) {
+    try {
+      const response = await fetch(`/api/posts/edit/${id}`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ postData: { content } }),
+      });
+      const data = await response.json();
+      dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function deletePost(id) {
     try {
@@ -197,6 +213,7 @@ export default function PostContextProvider({ children }) {
         setSearch,
         searchedUsers,
         deletePost,
+        editPost,
       }}
     >
       {children}
