@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/postcard.css";
+import EditPost from "./EditPostModal";
 
 export default function PostCard({ item }) {
   const {
@@ -10,19 +11,34 @@ export default function PostCard({ item }) {
     dislikePostHandler,
     removeBookmarkHandler,
     bookmarkHandler,
-    deletePost
+    deletePost,
+    editPost,
   } = useContext(postContext);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [postContent, setPostContent] = useState("");
   function changeHandler(e, postId) {
     if (e.target.value === "edit") {
-      // editPost(postId)
+      setId(postId);
+      setModalOpen(true);
     } else if (e.target.value === "delete") {
       deletePost(postId);
     } else {
       setIsOpen(false);
     }
   }
+  function saveProfile() {
+    editPost(item._id, postContent);
+    setModalOpen(false);
+    setIsOpen(false);
+  }
+
+  function saveChange(e) {
+    setPostContent(e.target.value);
+  }
+
   return (
     <>
       <div className="heading-post">
@@ -35,6 +51,7 @@ export default function PostCard({ item }) {
                 id=""
                 onChange={(e) => changeHandler(e, item._id)}
               >
+                <option value="">Select one</option>
                 <option value="edit">Edit</option>
                 <option value="delete">Delete</option>
                 <option value="go-back">Go back</option>
@@ -80,6 +97,14 @@ export default function PostCard({ item }) {
             className="fa fa-bookmark-o"
             onClick={() => bookmarkHandler(item._id)}
           ></span>
+        )}
+        {modalOpen && (
+          <EditPost
+            postId={id}
+            saveProfile={saveProfile}
+            saveChange={saveChange}
+            closeModal={setModalOpen}
+          />
         )}
       </div>
     </>
