@@ -15,14 +15,22 @@ export default function Profile() {
   const { logoutUser } = useContext(authContext);
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
+  const [avatar, setAvatar] = useState("");
 
   function saveProfile() {
     dispatch({ type: "EDIT_USER", payload: { ...state.user, ...editProfile } });
     setIsOpen(false);
   }
 
+  function withImage(url) {
+    setAvatar(url);
+    setEditProfile({
+      ...editProfile,
+      avatar: url,
+    });
+  }
+
   function updateProfile(e) {
-    console.log({ editProfile, value: e.target.value });
     if (e.target.value)
       setEditProfile({
         ...editProfile,
@@ -74,6 +82,7 @@ export default function Profile() {
           closeModal={setIsOpen}
           updateProfile={updateProfile}
           saveProfile={saveProfile}
+          setAvatar={withImage}
         />
       )}
     </div>
