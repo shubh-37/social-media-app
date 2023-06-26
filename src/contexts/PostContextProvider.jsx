@@ -156,6 +156,8 @@ export default function PostContextProvider({ children }) {
         body: JSON.stringify({ postData: { content } }),
       });
       const data = await response.json();
+      const recentPost = data.posts.pop();
+      data.posts.unshift(recentPost);
       dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
     } catch (error) {
       console.log(error);
