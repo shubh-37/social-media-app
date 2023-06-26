@@ -11,7 +11,7 @@
 
 .modal-container{
   width: 20rem;
-  height: 25rem;
+  height: 30rem;
   border-radius: 0.3rem;
   box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
   display: flex;
@@ -75,4 +75,18 @@
 
 .modal-container .modal-footer .cancel-btn{
   background-color: crimson;
+}
+
+.avatars{
+  display: flex;
+  width: 100%;
+  padding-left: 0;
+}
+
+.avatars img{
+  width: 100%;
+}
+
+.modal-header h3{
+  margin-bottom: 0;
 }
