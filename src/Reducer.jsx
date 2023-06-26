@@ -48,6 +48,7 @@ export default function reducer(state, action) {
           lastName: action.payload.lastName,
           bio: action.payload.bio,
           portfolio_link: action.payload.portfolio_link,
+          avatar: action.payload.avatar,
         },
       };
     default:
