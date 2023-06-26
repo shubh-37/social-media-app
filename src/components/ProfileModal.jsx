@@ -6,7 +6,16 @@ export default function ProfileModal({
   closeModal,
   updateProfile,
   saveProfile,
+  setAvatar
 }) {
+  const avatarLinks = [
+    "https://i.ibb.co/jRVZ3Xp/avataaars-6.png",
+    "https://i.ibb.co/4KNJz5D/avataaars-5.png",
+    "https://i.ibb.co/Z8Sy1Gp/avataaars-4.png",
+    "https://i.ibb.co/2nFm3P3/avataaars-3.png",
+    "https://i.ibb.co/VTCJfQb/avataaars.png",
+    "https://i.ibb.co/Ntbw7Lb/avataaars-2.png",
+  ];
   const { state } = useContext(postContext);
   return (
     <>
@@ -30,6 +39,13 @@ export default function ProfileModal({
             <h3>Edit your personal information</h3>
           </div>
           <div className="modal-body">
+            <p>Choose an avatar</p>
+            <ul className="avatars">
+              {avatarLinks.map((item) => (
+                <li > <img src={item} alt="" onClick={() => setAvatar(item)}/></li>
+                
+              ))}
+            </ul>
             <label htmlFor="">Edit your first name: </label>
             <input
               type="text"
