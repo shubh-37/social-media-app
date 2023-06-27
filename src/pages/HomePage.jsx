@@ -7,10 +7,16 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { state, createPost } = useContext(postContext);
+  const { state, createPost, trendyPosts, dispatch } = useContext(postContext);
+  console.log(state.trend);
   const [postContent, setPostContent] = useState("");
   function textChange(e) {
     setPostContent(e.target.value);
+  }
+
+  function trendHandler() {
+    console.log(state.trend);
+    dispatch({ type: "TREND" });
   }
   return (
     <div className="home">
@@ -41,8 +47,13 @@ export default function HomePage() {
         </div>
         <div className="latest-post">
           <h2>Will show posts of the following and self</h2>
+          <div>
+            <h3>Sort by:</h3>
+            <button onClick={() => trendHandler()}>Trending</button>
+            <button>Recent posts</button>
+          </div>
           <ul>
-            {state?.allPosts?.map((item) => (
+            {trendyPosts.map((item) => (
               <li key={item._id}>
                 <PostCard item={item} />
               </li>
