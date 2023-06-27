@@ -137,7 +137,11 @@ export default function PostContextProvider({ children }) {
         },
       });
       const data = await response.json();
-      dispatch({ type: "USER", payload: data.user });
+      console.log(data);
+      dispatch({
+        type: "USER",
+        payload: { user: data.user, followUser: data.followUser },
+      });
     } catch (error) {
       console.log(error);
     }
