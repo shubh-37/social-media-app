@@ -56,6 +56,11 @@ export default function reducer(state, action) {
         ...state,
         trend: !state.trend,
       };
+      case "RECENT":
+        return {
+          ...state,
+          recent: !state.recent,
+        };
     default:
       return state;
   }
