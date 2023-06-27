@@ -51,6 +51,11 @@ export default function reducer(state, action) {
           avatar: action.payload.avatar,
         },
       };
+    case "TREND":
+      return {
+        ...state,
+        trend: !state.trend,
+      };
     default:
       return state;
   }
