@@ -19,7 +19,7 @@ export default function Sidebar() {
 
         <ul>
           {searchedUsers
-            ?.filter((item) => item.username !== state.user.username)
+            ?.filter((item) => item.username !== state.user?.username)
             .map((item) => (
               <li key={item._id}>
                 {state.user?.following?.find(
