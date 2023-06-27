@@ -34,11 +34,20 @@ export default function reducer(state, action) {
         ...state,
         allPosts: action.payload.post,
       };
-    case "USER":
+    case "USER": {
+      const updatedUsers = state.allUsers?.reduce(
+        (acc, item) =>
+          item?.username === action.payload.followUser?.username
+            ? [...acc, action.payload.followUser]
+            : [...acc, { ...item }],
+        []
+      );
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        allUsers: updatedUsers,
       };
+    }
     case "EDIT_USER":
       return {
         ...state,
@@ -56,11 +65,11 @@ export default function reducer(state, action) {
         ...state,
         trend: !state.trend,
       };
-      case "RECENT":
-        return {
-          ...state,
-          recent: !state.recent,
-        };
+    case "RECENT":
+      return {
+        ...state,
+        recent: !state.recent,
+      };
     default:
       return state;
   }
