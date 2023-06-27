@@ -48,6 +48,16 @@ export default function reducer(state, action) {
         allUsers: updatedUsers,
       };
     }
+    case "NEW_USER": {
+      const updatedUser = {
+        ...action.payload.user,
+        avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png",
+      };
+      return {
+        ...state,
+        user: updatedUser,
+      };
+    }
     case "EDIT_USER":
       return {
         ...state,
