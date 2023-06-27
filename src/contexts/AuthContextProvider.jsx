@@ -29,6 +29,20 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function loginUser(user) {
+    try {
+      const response = await axios.post("api/auth/login", user);
+      if (response.data.encodedToken) {
+        localStorage.setItem("token", response.data.encodedToken);
+        dispatch({ type: "USER", payload: { user: response.data.foundUser } });
+        setIslogin(true);
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function guestLogin() {
     const guestUser = {
       username: "adarshbalika",
@@ -53,7 +67,7 @@ export default function AuthProvider({ children }) {
   }
   return (
     <authContext.Provider
-      value={{ guestLogin, isLogin, logoutUser, signUpUser }}
+      value={{ guestLogin, isLogin, logoutUser, signUpUser, loginUser }}
     >
       {children}
     </authContext.Provider>
