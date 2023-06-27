@@ -12,6 +12,23 @@ export default function AuthProvider({ children }) {
   const [isLogin, setIslogin] = useState(false);
   const navigate = useNavigate();
 
+  async function signUpUser(user) {
+    try {
+      const response = await axios.post("api/auth/signup", user);
+      if (response.data.encodedToken) {
+        localStorage.setItem("token", response.data.encodedToken);
+        dispatch({
+          type: "NEW_USER",
+          payload: { user: response.data.createdUser },
+        });
+        setIslogin(true);
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function guestLogin() {
     const guestUser = {
       username: "adarshbalika",
@@ -21,7 +38,7 @@ export default function AuthProvider({ children }) {
       const response = await axios.post("/api/auth/login", guestUser);
       if (response.data.encodedToken) {
         localStorage.setItem("token", response.data.encodedToken);
-        dispatch({ type: "USER", payload: response.data.foundUser });
+        dispatch({ type: "USER", payload: { user: response.data.foundUser } });
         setIslogin(true);
         navigate("/profile");
       }
@@ -32,11 +49,12 @@ export default function AuthProvider({ children }) {
 
   function logoutUser() {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
     setIslogin(false);
   }
   return (
-    <authContext.Provider value={{ guestLogin, isLogin, logoutUser }}>
+    <authContext.Provider
+      value={{ guestLogin, isLogin, logoutUser, signUpUser }}
+    >
       {children}
     </authContext.Provider>
   );
