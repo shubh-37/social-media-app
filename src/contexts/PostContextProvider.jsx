@@ -14,12 +14,20 @@ export default function PostContextProvider({ children }) {
     allUsers: [],
     user: {},
     loggedUserPosts: [],
-    trend: false
+    trend: false,
+    recent: false,
   });
   const [search, setSearch] = useState("");
 
-  console.log(state.trend)
-  const trendyPosts = state.trend ? state.allPosts?.filter(({likes}) => likes.likeCount >= 60) : state.allPosts;
+  const trendyPosts = state.trend
+    ? state.allPosts?.filter(({ likes }) => likes.likeCount >= 60)
+    : state.allPosts;
+
+  const recentPosts = state.recent
+    ? trendyPosts.sort(
+        (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+      )
+    : trendyPosts;
 
   const searchedUsers =
     search.length > 0
@@ -160,8 +168,8 @@ export default function PostContextProvider({ children }) {
         body: JSON.stringify({ postData: { content } }),
       });
       const data = await response.json();
-      const recentPost = data.posts.pop();
-      data.posts.unshift(recentPost);
+      // const recentPost = data.posts.pop();
+      // data.posts.unshift(recentPost);
       dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
     } catch (error) {
       console.log(error);
@@ -218,7 +226,7 @@ export default function PostContextProvider({ children }) {
         searchedUsers,
         deletePost,
         editPost,
-        trendyPosts
+        recentPosts,
       }}
     >
       {children}
