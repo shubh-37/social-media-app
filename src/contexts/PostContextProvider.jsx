@@ -14,8 +14,12 @@ export default function PostContextProvider({ children }) {
     allUsers: [],
     user: {},
     loggedUserPosts: [],
+    trend: false
   });
   const [search, setSearch] = useState("");
+
+  console.log(state.trend)
+  const trendyPosts = state.trend ? state.allPosts?.filter(({likes}) => likes.likeCount >= 60) : state.allPosts;
 
   const searchedUsers =
     search.length > 0
@@ -214,6 +218,7 @@ export default function PostContextProvider({ children }) {
         searchedUsers,
         deletePost,
         editPost,
+        trendyPosts
       }}
     >
       {children}
