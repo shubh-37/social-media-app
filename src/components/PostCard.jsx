@@ -69,6 +69,7 @@ export default function PostCard({ item }) {
       </div>
 
       <p>{item.content}</p>
+      <p style={{color: "grey"}}>{item.createdAt}</p>
       <div className="post-icons">
         {item.likes.likedBy.find(
           ({ username }) => username === state.user.username
