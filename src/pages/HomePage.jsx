@@ -7,7 +7,7 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { createPost, recentPosts, dispatch } = useContext(postContext);
+  const { state, createPost, recentPosts, dispatch } = useContext(postContext);
   const [postContent, setPostContent] = useState("");
   function textChange(e) {
     setPostContent(e.target.value);
@@ -50,8 +50,24 @@ export default function HomePage() {
           <h2>Will show posts of the following and self</h2>
           <div>
             <h3>Sort by:</h3>
-            <button onClick={() => trendHandler()}>Trending</button>
-            <button onClick={() => recentHandler()}>Recent posts</button>
+            <button
+              onClick={() => trendHandler()}
+              style={{
+                backgroundColor: state.trend ? "black" : "",
+                color: state.trend ? "white" : "",
+              }}
+            >
+              Trending
+            </button>
+            <button
+              onClick={() => recentHandler()}
+              style={{
+                backgroundColor: state.recent ? "black" : "",
+                color: state.recent ? "white" : "",
+              }}
+            >
+              Recent posts
+            </button>
           </div>
           <ul>
             {recentPosts.map((item) => (
