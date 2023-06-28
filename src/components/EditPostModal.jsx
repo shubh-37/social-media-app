@@ -28,8 +28,10 @@ export default function EditPost({
       <div className="modal-background">
         <div className="modal-container">
           <div className="modal-header">
+            <div className="close-btn">
+              <button onClick={() => closeModal(false)}>X</button>
+            </div>
             <h3>Edit Post</h3>
-            <h3 onClick={() => closeModal(false)}>X</h3>
           </div>
           <div className="modal-body">
             <div className="avatar-img">
