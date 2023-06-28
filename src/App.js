@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Header from "./components/Header";
+import { postContext } from "./contexts/PostContextProvider";
 import Bookmark from "./pages/BookmarkPage";
 import Explore from "./pages/ExplorePage";
 import HomePage from "./pages/HomePage";
@@ -9,8 +12,16 @@ import Profile from "./pages/ProfilePage";
 import SignUp from "./pages/SignUpPage";
 
 function App() {
+  const { isDarkMode } = useContext(postContext);
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        color: isDarkMode ? "white" : "black",
+        backgroundColor: isDarkMode ? "#0f172a" : "white",
+      }}
+    >
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/landing" element={<LandingPage />} />
