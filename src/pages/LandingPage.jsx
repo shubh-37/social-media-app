@@ -18,8 +18,8 @@ export default function LandingPage(){
             <p>what you're thinking</p>
           </div>
 
-          <button>Join Now</button>
-          <Link>Already have an account</Link>
+          <button><Link to="/signup">Join Now</Link></button>
+          <Link to="/login">Already have an account</Link>
         </div>
         <div className="landing-img"></div>
       </div>
