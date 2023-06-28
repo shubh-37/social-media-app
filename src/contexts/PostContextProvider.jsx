@@ -18,9 +18,8 @@ export default function PostContextProvider({ children }) {
     recent: false,
   });
   const [search, setSearch] = useState("");
-  
+
   const posts = state.allPosts?.filter(({username}) => username=== state.user?.username || state.user?.following?.find((item) => item?.username === username))
-  console.log(posts, "self");
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -159,7 +158,7 @@ export default function PostContextProvider({ children }) {
         },
       });
       const data = await response.json();
-      dispatch({ type: "USER", payload: data.user });
+      dispatch({ type: "USER", payload: { user: data.user, followUser: data.followUser } });
     } catch (error) {
       console.log(error);
     }
