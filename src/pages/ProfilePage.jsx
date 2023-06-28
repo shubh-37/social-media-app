@@ -9,6 +9,7 @@ import "../css/profilepage.css";
 import { useState } from "react";
 import ProfileModal from "../components/ProfileModal";
 import PostCard from "../components/PostCard";
+import FollowModal from "../components/FollowModal";
 
 export default function Profile() {
   const { state, dispatch } = useContext(postContext);
@@ -16,6 +17,8 @@ export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
   const [avatar, setAvatar] = useState("");
+  const [followerModal, setFollowerModal] = useState(false);
+  const [followingModal, setFollowingModal] = useState(false);
 
   function saveProfile() {
     dispatch({ type: "EDIT_USER", payload: { ...state.user, ...editProfile } });
@@ -56,8 +59,12 @@ export default function Profile() {
         </div>
         <h2>{`${state.user?.firstName} ${state.user?.lastName}`}</h2>
         <p>{`@${state.user?.username}`}</p>
-        <p>{state.user?.following?.length} following</p>
-        <p>{state.user?.followers?.length} follower</p>
+        <p onClick={() => setFollowingModal(!followingModal)}>
+          {state.user?.following?.length} following
+        </p>
+        <p onClick={() => setFollowerModal(!followerModal)}>
+          {state.user?.followers?.length} follower
+        </p>
         <p>{state.user?.bio ? <>Bio: {state.user?.bio} </> : <>Add a bio</>}</p>
         <p>
           {state.user?.portfolio_link ? (
@@ -84,6 +91,12 @@ export default function Profile() {
           saveProfile={saveProfile}
           setAvatar={withImage}
         />
+      )}
+      {followerModal && (
+        <FollowModal closeModal={setFollowerModal} follower={true} />
+      )}
+      {followingModal && (
+        <FollowModal closeModal={setFollowingModal} follower={false} />
       )}
     </div>
   );
