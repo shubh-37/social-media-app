@@ -42,8 +42,8 @@ export default function PostCard({ item }) {
   return (
     <>
       <div className="heading-post">
-        <h3 className="username">{item.username}</h3>
-        {item.username === state.user.username && (
+        <h3 className="username">{item?.username}</h3>
+        {item?.username === state.user?.username && (
           <>
             {isOpen ? (
               <select
