@@ -19,6 +19,8 @@ export default function PostContextProvider({ children }) {
   });
   const [search, setSearch] = useState("");
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const trendyPosts = state.trend
     ? state.allPosts?.filter(({ likes }) => likes.likeCount >= 60)
     : state.allPosts;
@@ -230,6 +232,8 @@ export default function PostContextProvider({ children }) {
         deletePost,
         editPost,
         recentPosts,
+        isDarkMode,
+        setIsDarkMode
       }}
     >
       {children}
