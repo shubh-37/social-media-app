@@ -36,17 +36,17 @@ export default function ProfileModal({
             <button onClick={() => closeModal(false)}>X</button>
           </div>
           <div className="modal-header">
-            <h3>Edit your personal information</h3>
+            <h3 style={{color: "black"}}>Edit your personal information</h3>
           </div>
           <div className="modal-body">
-            <p>Choose an avatar</p>
+            <p style={{color: "black"}}>Choose an avatar</p>
             <ul className="avatars">
               {avatarLinks.map((item) => (
                 <li > <img src={item} alt="" onClick={() => setAvatar(item)}/></li>
                 
               ))}
             </ul>
-            <label htmlFor="">Edit your first name: </label>
+            <label htmlFor="" style={{color: "black"}}>Edit your first name: </label>
             <input
               type="text"
               name="firstName"
@@ -54,7 +54,7 @@ export default function ProfileModal({
               defaultValue={state.user.firstName}
               onChange={(e) => updateProfile(e)}
             />
-            <label htmlFor="">Edit your last name: </label>
+            <label htmlFor="" style={{color: "black"}}>Edit your last name: </label>
             <input
               type="text"
               name="lastName"
@@ -62,7 +62,7 @@ export default function ProfileModal({
               defaultValue={state.user.lastName}
               onChange={(e) => updateProfile(e)}
             />
-            <label htmlFor="">Add a bio</label>
+            <label htmlFor="" style={{color: "black"}}>Add a bio</label>
             <input
               type="text"
               name="bio"
@@ -70,7 +70,7 @@ export default function ProfileModal({
               defaultValue={state.user.bio}
               onChange={(e) => updateProfile(e)}
             />
-            <label htmlFor="">Add your portfolio link</label>
+            <label htmlFor="" style={{color: "black"}}>Add your portfolio link</label>
             <input
               type="text"
               name="portfolio_link"
