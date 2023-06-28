@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { postContext } from "../contexts/PostContextProvider";
 
 export default function Sidebar() {
@@ -26,7 +27,8 @@ export default function Sidebar() {
                   ({ username }) => username === item.username
                 ) ? (
                   <>
-                    {item.username}
+                    <Link to={`/tp/${item.username}`}>{item.username}</Link>
+
                     <button>
                       <span className="test">Following</span>
                       <span
@@ -39,7 +41,7 @@ export default function Sidebar() {
                   </>
                 ) : (
                   <>
-                    {item.username}
+                    <Link to={`/tp/${item.username}`}>{item.username}</Link>
                     <button onClick={() => followUser(item._id)}>
                       Follow
                     </button>{" "}
