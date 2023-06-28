@@ -12,7 +12,7 @@ export default function FollowModal({ closeModal, follower }) {
             <div className="close-btn">
               <button onClick={() => closeModal(false)}>X</button>
             </div>
-            <h3>{follower ? "Followers" : "Following"}</h3>
+            <h3 style={{color: "black"}}>{follower ? "Followers" : "Following"}</h3>
           </div>
           <div className="modal-body">
             <ul>
