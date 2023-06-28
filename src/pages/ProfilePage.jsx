@@ -75,11 +75,13 @@ export default function Profile() {
         </p>
         <button onClick={() => setIsOpen(true)}>Edit profile</button>
         <ul>
-          {state?.loggedUserPosts?.map((item) => (
-            <li key={item._id}>
-              <PostCard item={item} />
-            </li>
-          ))}
+          {state?.allPosts
+            .filter(({ username }) => username === state.user?.username)
+            ?.map((item) => (
+              <li key={item._id}>
+                <PostCard item={item} />
+              </li>
+            ))}
         </ul>
         <button onClick={() => logoutUser()}>Logout</button>
       </div>
