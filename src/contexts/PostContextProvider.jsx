@@ -18,12 +18,15 @@ export default function PostContextProvider({ children }) {
     recent: false,
   });
   const [search, setSearch] = useState("");
+  
+  const posts = state.allPosts?.filter(({username}) => username=== state.user?.username || state.user?.following?.find((item) => item?.username === username))
+  console.log(posts, "self");
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const trendyPosts = state.trend
-    ? state.allPosts?.filter(({ likes }) => likes.likeCount >= 60)
-    : state.allPosts;
+    ? posts?.filter(({ likes }) => likes.likeCount >= 60)
+    : posts;
 
   const recentPosts = state.recent
     ? trendyPosts.sort(
@@ -233,7 +236,7 @@ export default function PostContextProvider({ children }) {
         editPost,
         recentPosts,
         isDarkMode,
-        setIsDarkMode
+        setIsDarkMode,
       }}
     >
       {children}
