@@ -13,6 +13,7 @@ export default function PostCard({ item }) {
     bookmarkHandler,
     deletePost,
     editPost,
+    isDarkMode
   } = useContext(postContext);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ export default function PostCard({ item }) {
   }
 
   return (
-    <>
+    <div style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}} className="post-parent">
       <div className="heading-post">
         <h3 className="username">{item?.username}</h3>
         {item?.username === state.user?.username && (
@@ -78,11 +79,12 @@ export default function PostCard({ item }) {
             className="fa fa-heart"
             onClick={() => dislikePostHandler(item._id)}
           >
-            {item.likes.likeCount}
+            <span style={{margin: "0.4rem"}}>{item.likes.likeCount}</span>
+            
           </span>
         ) : (
           <span className="	fa fa-heart-o" onClick={() => likeHandler(item._id)}>
-            {item.likes.likeCount}
+            <span style={{margin: "0.3rem"}}>{item.likes.likeCount}</span>
           </span>
         )}
 
@@ -108,6 +110,6 @@ export default function PostCard({ item }) {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }
