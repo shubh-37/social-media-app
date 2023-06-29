@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { postContext } from "../contexts/PostContextProvider";
+import "../css/sidebar.css";
 
 export default function Sidebar() {
   const { state, followUser, unfollowUser, setSearch, searchedUsers } =
