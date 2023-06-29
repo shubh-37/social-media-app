@@ -19,7 +19,7 @@ function App() {
       className="App"
       style={{
         color: isDarkMode ? "white" : "black",
-        backgroundColor: isDarkMode ? "#0f172a" : "white",
+        backgroundColor: isDarkMode ? "#0f172a" : "#93c5fd",
       }}
     >
       <Header />
