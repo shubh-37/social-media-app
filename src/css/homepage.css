@@ -4,6 +4,9 @@
 
 .main-content{
   grid-area: main-content;
+  overflow: hidden;
+  border-right: 1px solid;
+  border-left: 1px solid;
 }
 
 .sidebar{
@@ -12,9 +15,9 @@
 
 .home{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  grid-template-areas: "home-navigate main-content main-content side-bar";
+  grid-template-areas: "home-navigate main-content main-content main-content side-bar";
 }
 
 .post-icons{
