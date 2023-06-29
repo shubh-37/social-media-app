@@ -1,10 +1,12 @@
 .explore-main{
   grid-area: explore-main;
+  border-right: 1px solid;
+  border-left: 1px solid;
 }
 
 .explore-parent{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  grid-template-areas: "home-navigate explore-main explore-main side-bar";
+  grid-template-areas: "home-navigate explore-main explore-main explore-main side-bar";
 }
