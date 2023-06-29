@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../contexts/AuthContextProvider";
+import "../css/signup.css";
 
 export default function SignUp() {
   const { signUpUser } = useContext(authContext);
@@ -17,15 +18,16 @@ export default function SignUp() {
     signUpUser(user);
   }
   return (
-    <div>
-      <h1>This is the sign up page</h1>
-      <form onSubmit={(e) => submitUser(e)}>
+    <div className="signup-parent">
+      <h2 className="signup-heading">Sign up now</h2>
+      <form onSubmit={(e) => submitUser(e)} className="form-parent">
         <label htmlFor="fname">First Name</label>
         <input
           type="text"
           name="firstName"
           id="fname"
           required
+          placeholder="Shubh"
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="lname">Last name</label>
@@ -34,6 +36,7 @@ export default function SignUp() {
           name="lastName"
           id="lname"
           required
+          placeholder="Arya"
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="username">Username</label>
@@ -42,6 +45,7 @@ export default function SignUp() {
           name="username"
           id="username"
           required
+          placeholder="awesomeShubh"
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="password">Password</label>
@@ -50,12 +54,13 @@ export default function SignUp() {
           name="password"
           id="password"
           required
+          placeholder="shubh@123"
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="cpassword">Confirm Password</label>
-        <input type="password" name="" id="cpassword" required />
-        <button type="submit">Sign up</button>
-        <Link to="/login">Already have an account? Login now.</Link>
+        <input type="password" name="" id="cpassword" placeholder="shubh@123" required />
+        <button type="submit" className="signup-btn">Sign up</button>
+        <Link to="/login" className="signup-link">Already have an account? Login now.</Link>
       </form>
     </div>
   );
