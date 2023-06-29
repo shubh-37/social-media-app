@@ -25,6 +25,7 @@ export default function Login() {
           type="text"
           name="username"
           id="username"
+          placeholder="awesomeShubh"
           required
           onChange={(e) => inputHandler(e)}
         />
@@ -33,6 +34,7 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
+          placeholder="shubh@123"
           required
           onChange={(e) => inputHandler(e)}
         />
