@@ -17,9 +17,9 @@ export default function Login() {
     loginUser(user);
   }
   return (
-    <div>
-      <h1>Login page</h1>
-      <form onSubmit={(e) => submitLogin(e)}>
+    <div className="signup-parent">
+      <h2 className="signup-heading">Login page</h2>
+      <form onSubmit={(e) => submitLogin(e)} className="form-parent">
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -36,17 +36,17 @@ export default function Login() {
           required
           onChange={(e) => inputHandler(e)}
         />
-        <button type="submit">Login</button>
-        <Link to="/signup">Don't have an account? Sign up now.</Link>
+        <button type="submit" className="signup-btn">Login</button>
+        <Link to="/signup" className="signup-link">Don't have an account? Sign up now.</Link>
         <button
           onClick={(e) => {
             e.preventDefault();
             guestLogin();
           }}
+          className="signup-btn"
         >
           Guest login
         </button>
-        <Link to="/profile">Profile</Link>
       </form>
     </div>
   );
