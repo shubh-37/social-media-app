@@ -34,10 +34,6 @@ export default function EditPost({
             <h3>Edit Post</h3>
           </div>
           <div className="modal-body">
-            <div className="avatar-img">
-              <img src={state.user.avatar} alt="" />
-            </div>
-
             <textarea
               name="content"
               id=""
