@@ -7,7 +7,7 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/homepage.css";
 
 export default function HomePage() {
-  const { state, createPost, recentPosts, dispatch } = useContext(postContext);
+  const { state, createPost, recentPosts, dispatch, isDarkMode } = useContext(postContext);
   const [postContent, setPostContent] = useState("");
   function textChange(e) {
     setPostContent(e.target.value);
@@ -23,7 +23,8 @@ export default function HomePage() {
     <div className="home">
       <Navbar />
       <div className="main-content">
-        <div className="create-post">
+      <h2 style={{margin: "1.5rem 1rem"}}>Home</h2>
+        <div className="create-post" style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}}>
           <label htmlFor="new-post"></label>
           <input
             onChange={(e) => textChange(e)}
@@ -32,11 +33,13 @@ export default function HomePage() {
             id="new-post"
             placeholder="What is Happening!?"
             value={postContent}
+            style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}}
           />
-          <div>
+          <div style={{borderTop : "1px solid"}}>
             <span className="fa fa-image"></span>
             <span className="fa fa-smile-o"></span>
             <button
+              className="create-post-btn"
               onClick={() => {
                 createPost(postContent);
                 setPostContent("");
@@ -47,26 +50,24 @@ export default function HomePage() {
           </div>
         </div>
         <div className="latest-post">
-          <h2>Will show posts of the following and self</h2>
-          <div>
-            <h3>Sort by:</h3>
+          <div className="sort-btn">
             <button
               onClick={() => trendHandler()}
               style={{
-                backgroundColor: state.trend ? "black" : "",
-                color: state.trend ? "white" : "",
+                backgroundColor: state.trend && isDarkMode ? "#bfdbfe" : "",
+                color: state.trend && isDarkMode ? "black" : "",
               }}
             >
-              Trending
+              {state.trend ? "Showing trendy" : "Trending"}
             </button>
             <button
               onClick={() => recentHandler()}
               style={{
-                backgroundColor: state.recent ? "black" : "",
-                color: state.recent ? "white" : "",
+                backgroundColor: state.recent && isDarkMode ? "#bfdbfe" : "",
+                color: state.recent && isDarkMode ? "black" : "",
               }}
             >
-              Recent posts
+              {state.recent ? "Showing recent" : "Recent posts"}
             </button>
           </div>
           <ul>
