@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/profilemodal.css";
 
@@ -17,6 +17,7 @@ export default function ProfileModal({
     "https://i.ibb.co/Ntbw7Lb/avataaars-2.png",
   ];
   const { state } = useContext(postContext);
+  useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>
       <div
