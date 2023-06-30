@@ -70,6 +70,19 @@ export default function reducer(state, action) {
           avatar: action.payload.avatar,
         },
       };
+    case "UPDATE_USERS": {
+      const updatedUsers = state.allUsers?.reduce(
+        (acc, item) =>
+          item?.username === state.user?.username
+            ? [...acc, state.user]
+            : [...acc, { ...item }],
+        []
+      );
+      return {
+        ...state,
+        allUsers: updatedUsers,
+      };
+    }
     case "TREND":
       return {
         ...state,
