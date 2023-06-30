@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../contexts/AuthContextProvider";
+import { postContext } from "../contexts/PostContextProvider";
 import "../css/signup.css";
 
 export default function SignUp() {
   const { signUpUser } = useContext(authContext);
+  const { isDarkMode } = useContext(postContext);
   const [user, setUser] = useState({});
   function userHandler(e) {
     setUser({
@@ -18,7 +20,7 @@ export default function SignUp() {
     signUpUser(user);
   }
   return (
-    <div className="signup-parent">
+    <div className="signup-parent" style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}} >
       <h2 className="signup-heading">Sign up now</h2>
       <form onSubmit={(e) => submitUser(e)} className="form-parent">
         <label htmlFor="fname">First Name</label>
