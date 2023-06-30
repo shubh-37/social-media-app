@@ -16,6 +16,7 @@ export default function PostCard({ item }) {
     isDarkMode
   } = useContext(postContext);
 
+  const avatarObj = state.allUsers?.find(({username}) => username === item.username);
   const [isOpen, setIsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState("");
@@ -43,7 +44,7 @@ export default function PostCard({ item }) {
   return (
     <div style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}} className="post-parent">
       <div className="heading-post">
-        <h3 className="username">{item?.username}</h3>
+        <span className="avatar"><img src={avatarObj?.avatar} alt="" /></span><h3 className="username">{item?.username}</h3>
         {item?.username === state.user?.username && (
           <>
             {isOpen ? (

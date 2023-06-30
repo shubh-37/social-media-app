@@ -35,3 +35,11 @@
   font-size: large;
   text-align: center;
 }
+
+.avatar{
+  width: 3rem;
+}
+
+.avatar img{
+  width: 100%;
+}
