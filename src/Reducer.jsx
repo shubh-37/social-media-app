@@ -80,6 +80,12 @@ export default function reducer(state, action) {
         ...state,
         recent: !state.recent,
       };
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        user: {},
+        loggedUserPosts: [],
+      };
     default:
       return state;
   }
