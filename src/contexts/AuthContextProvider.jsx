@@ -62,6 +62,7 @@ export default function AuthProvider({ children }) {
   }
 
   function logoutUser() {
+    dispatch({type: "LOGOUT_USER"})
     localStorage.removeItem("token");
     setIslogin(false);
   }
