@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../css/navbar.css";
 import { postContext } from "../contexts/PostContextProvider";
+import { authContext } from "../contexts/AuthContextProvider";
 
 export default function Navbar() {
   const { isDarkMode } = useContext(postContext);
+  const { isLogin, logoutUser } = useContext(authContext);
   return (
     <div className="home-navigate">
       <div style={{ marginLeft: "5rem" }}>
@@ -70,15 +72,30 @@ export default function Navbar() {
         </NavLink>
         <button className="create-post-btn">Create New post</button>
 
-        <Link
+        {isLogin ? (
+          <button className="login-btn" onClick={() => logoutUser()}>
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            style={{
+              textDecoration: "none",
+              color: isDarkMode ? "white" : "black",
+            }}
+          >
+            <button className="login-btn">Login</button>
+          </Link>
+        )}
+        {/* <Link
           to="/login"
           style={{
             textDecoration: "none",
             color: isDarkMode ? "white" : "black",
           }}
-        >
+        > 
           <button className="login-btn">Login</button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
