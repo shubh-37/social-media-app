@@ -54,22 +54,23 @@ export default function LandingPage() {
           <Link to="/signup" style={{ textDecoration: "none", color: "white" }}>
             <button className="join-btn">Join Now</button>
           </Link>
-          <Link
-            to="/login"
-            style={{
-              display: "block",
-              textDecoration: "none",
-              color: isDarkMode ? "white" : "black",
-              // textAlign: "center",
-              marginTop: "1rem",
-            }}
-          >
-            Already have an account?{" "}
-            <span
-              className="	fa fa-hand-o-left"
-              style={{ fontSize: "1.5rem" }}
-            ></span>
-          </Link>
+          <span className="signup-link">
+            <Link
+              to="/login"
+              style={{
+                display: "block",
+                textDecoration: "none",
+                color: isDarkMode ? "white" : "black",
+                marginTop: "1rem",
+              }}
+            >
+              Already have an account?{" "}
+              <span
+                className="	fa fa-hand-o-left"
+                style={{ fontSize: "1.5rem" }}
+              ></span>
+            </Link>
+          </span>
         </div>
       </div>
       <div className="landing-img">
