@@ -1,6 +1,5 @@
 .profile-main{
   grid-area: profile-main;
-  text-align: center;
   border-right: 1px solid;
   border-left: 1px solid;
 }
