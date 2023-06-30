@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../contexts/AuthContextProvider";
+import { postContext } from "../contexts/PostContextProvider";
 
 export default function Login() {
+  const {isDarkMode} = useContext(postContext);
   const { guestLogin, loginUser } = useContext(authContext);
   const [user, setUser] = useState({});
 
@@ -17,7 +19,7 @@ export default function Login() {
     loginUser(user);
   }
   return (
-    <div className="signup-parent">
+    <div className="signup-parent" style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}} >
       <h2 className="signup-heading">Login page</h2>
       <form onSubmit={(e) => submitLogin(e)} className="form-parent">
         <label htmlFor="username">Username</label>
