@@ -3,7 +3,6 @@ import { useContext } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/profilepage.css";
 import { useState } from "react";
@@ -13,7 +12,6 @@ import FollowModal from "../components/FollowModal";
 
 export default function Profile() {
   const { state, dispatch } = useContext(postContext);
-  const { logoutUser } = useContext(authContext);
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
   const [avatar, setAvatar] = useState("");
@@ -83,7 +81,6 @@ export default function Profile() {
               </li>
             ))}
         </ul>
-        <button onClick={() => logoutUser()}>Logout</button>
       </div>
       <Sidebar />
       {isOpen && (
