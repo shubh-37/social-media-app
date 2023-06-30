@@ -32,3 +32,35 @@ button:hover .test{
 button:hover .test2{
   display: inline;
 }
+
+.create-post{
+  /* background-color: #dbeafe; */
+  border-bottom: 1px solid;
+}
+#new-post{
+  border: none;
+  margin: 0.5rem;
+  width: 15rem;
+  /* background-color: #dbeafe; */
+  padding: 0.5rem;
+  height: 4rem;
+  outline :none;
+  font-size: large;
+  /* border-bottom: 1px solid; */
+}
+
+.fa-image, .fa-smile-o{
+  cursor: pointer;
+  font-size: large;
+  margin: 1rem;
+}
+
+.sort-btn{
+  margin-top: 1rem;
+}
+
+.sort-btn button{
+  width: 50%;
+  padding: 0.5rem;
+  font-size: large;
+}
