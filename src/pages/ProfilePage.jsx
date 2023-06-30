@@ -9,9 +9,10 @@ import { useState } from "react";
 import ProfileModal from "../components/ProfileModal";
 import PostCard from "../components/PostCard";
 import FollowModal from "../components/FollowModal";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
-  const { state, dispatch } = useContext(postContext);
+  const { state, dispatch, isDarkMode } = useContext(postContext);
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
   const [avatar, setAvatar] = useState("");
@@ -20,6 +21,7 @@ export default function Profile() {
 
   function saveProfile() {
     dispatch({ type: "EDIT_USER", payload: { ...state.user, ...editProfile } });
+    dispatch({ type: "UPDATE_USERS" });
     setIsOpen(false);
   }
 
@@ -52,26 +54,40 @@ export default function Profile() {
     <div className="profile-parent">
       <Navbar />
       <div className="profile-main">
-        <div className="avatar-img">
-          <img src={state.user?.avatar} alt="" />
+        <div style={{ textAlign: "center" }}>
+          <div className="avatar-img">
+            <img src={state.user?.avatar} alt="" />
+          </div>
+          <h2>{`${state.user?.firstName} ${state.user?.lastName}`}</h2>
+          <p>{`@${state.user?.username}`}</p>
+          <p onClick={() => setFollowingModal(!followingModal)}>
+            {state.user?.following?.length} following
+          </p>
+          <p onClick={() => setFollowerModal(!followerModal)}>
+            {state.user?.followers?.length} follower
+          </p>
+          <p>
+            {state.user?.bio ? <>Bio: {state.user?.bio} </> : <>Add a bio</>}
+          </p>
+          <p>
+            {state.user?.portfolio_link ? (
+              <>
+                Portfolio-url:{" "}
+                <Link
+                  style={{ color: isDarkMode ? "white" : "black" }}
+                  to={state.user?.portfolio_link}
+                >
+                  {state.user?.portfolio_link}
+                </Link>
+              </>
+            ) : (
+              <>Add your portfolio url</>
+            )}
+          </p>
+          <button onClick={() => setIsOpen(true)} className="create-post-btn">
+            Edit profile
+          </button>
         </div>
-        <h2>{`${state.user?.firstName} ${state.user?.lastName}`}</h2>
-        <p>{`@${state.user?.username}`}</p>
-        <p onClick={() => setFollowingModal(!followingModal)}>
-          {state.user?.following?.length} following
-        </p>
-        <p onClick={() => setFollowerModal(!followerModal)}>
-          {state.user?.followers?.length} follower
-        </p>
-        <p>{state.user?.bio ? <>Bio: {state.user?.bio} </> : <>Add a bio</>}</p>
-        <p>
-          {state.user?.portfolio_link ? (
-            <>Portfolio-url: {state.user?.portfolio_link}</>
-          ) : (
-            <>Add your portfolio url</>
-          )}
-        </p>
-        <button onClick={() => setIsOpen(true)}>Edit profile</button>
         <ul>
           {state?.allPosts
             .filter(({ username }) => username === state.user?.username)
