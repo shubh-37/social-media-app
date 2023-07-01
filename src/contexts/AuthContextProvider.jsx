@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("token", response.data.encodedToken);
         dispatch({ type: "USER", payload: { user: response.data.foundUser } });
         setIslogin(true);
-        navigate("/profile");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
