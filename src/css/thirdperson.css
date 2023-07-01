@@ -1,6 +1,6 @@
 .tp-parent{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  grid-template-areas: "home-navigate profile-main profile-main side-bar";
+  grid-template-areas: "home-navigate profile-main profile-main profile-main side-bar";
 }
