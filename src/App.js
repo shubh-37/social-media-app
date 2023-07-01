@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
+import RequiresAuth from "./components/RequiresAuth";
 import { postContext } from "./contexts/PostContextProvider";
 import Bookmark from "./pages/BookmarkPage";
 import Explore from "./pages/ExplorePage";
@@ -24,14 +25,49 @@ function App() {
     >
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            <RequiresAuth>
+              <HomePage />
+            </RequiresAuth>
+          }
+        />
         <Route path="/landing" element={<LandingPage />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/bookmark" element={<Bookmark />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/explore"
+          element={
+            <RequiresAuth>
+              <Explore />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <RequiresAuth>
+              <Bookmark />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/tp/:userId" element={<ThirdPerson />} />
+        <Route
+          path="/tp/:userId"
+          element={
+            <RequiresAuth>
+              <ThirdPerson />
+            </RequiresAuth>
+          }
+        />
       </Routes>
     </div>
   );
