@@ -12,8 +12,7 @@ export default function Explore() {
     <div className="explore-parent">
       <Navbar />
       <div className="explore-main">
-        <h1>this is the explore page</h1>
-        <h2>Showing all posts</h2>
+        <h2 style={{ margin: "1.5rem 1rem" }}>Explore</h2>
         <ul>
           {state?.allPosts?.map((item) => (
             <li key={item._id}>
