@@ -1,3 +1,12 @@
-.sidebar{
-  /* border-left: 1px solid; */
+.follow-user, .following-user{
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+
+#search{
+  padding: 0.8rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 1rem;
 }
