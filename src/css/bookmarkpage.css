@@ -10,3 +10,12 @@
   gap: 1rem;
   grid-template-areas: "home-navigate bookmark-main bookmark-main bookmark-main side-bar";
 }
+
+.bookmark-heading{
+  margin: 1.5rem 1rem;
+  border-bottom: 1px solid;
+}
+
+.no-bookmark{
+  margin: 1.5rem 1rem;
+}
