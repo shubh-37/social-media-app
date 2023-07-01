@@ -18,8 +18,13 @@ export default function PostContextProvider({ children }) {
     recent: false,
   });
   const [search, setSearch] = useState("");
+  const [postContent, setPostContent] = useState("");
 
-  const posts = state.allPosts?.filter(({username}) => username=== state.user?.username || state.user?.following?.find((item) => item?.username === username))
+  const posts = state.allPosts?.filter(
+    ({ username }) =>
+      username === state.user?.username ||
+      state.user?.following?.find((item) => item?.username === username)
+  );
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -158,7 +163,10 @@ export default function PostContextProvider({ children }) {
         },
       });
       const data = await response.json();
-      dispatch({ type: "USER", payload: { user: data.user, followUser: data.followUser } });
+      dispatch({
+        type: "USER",
+        payload: { user: data.user, followUser: data.followUser },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -175,8 +183,6 @@ export default function PostContextProvider({ children }) {
         body: JSON.stringify({ postData: { content } }),
       });
       const data = await response.json();
-      // const recentPost = data.posts.pop();
-      // data.posts.unshift(recentPost);
       dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
     } catch (error) {
       console.log(error);
@@ -236,6 +242,8 @@ export default function PostContextProvider({ children }) {
         recentPosts,
         isDarkMode,
         setIsDarkMode,
+        postContent,
+        setPostContent,
       }}
     >
       {children}
