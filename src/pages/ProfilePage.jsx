@@ -12,12 +12,18 @@ import FollowModal from "../components/FollowModal";
 import { Link } from "react-router-dom";
 
 export default function Profile() {
-  const { state, dispatch, isDarkMode } = useContext(postContext);
+  const {
+    state,
+    dispatch,
+    isDarkMode,
+    followerModal,
+    followingModal,
+    setFollowerModal,
+    setFollowingModal,
+  } = useContext(postContext);
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
   const [avatar, setAvatar] = useState("");
-  const [followerModal, setFollowerModal] = useState(false);
-  const [followingModal, setFollowingModal] = useState(false);
 
   function saveProfile() {
     dispatch({ type: "EDIT_USER", payload: { ...state.user, ...editProfile } });
