@@ -78,4 +78,16 @@ export const users = [
     portfolio_link: "",
     avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
   },
+  {
+    _id: uuid(),
+    firstName: "Shubham",
+    lastName: "Soni",
+    username: "shubhamsoni",
+    password: "adarshBalika123",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    bio: "",
+    portfolio_link: "",
+    avatar: "https://i.ibb.co/kSXJLZg/avataaars-1.png"
+  }
 ];
