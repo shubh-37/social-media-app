@@ -4,11 +4,17 @@ import { postContext } from "../contexts/PostContextProvider";
 import "../css/sidebar.css";
 
 export default function Sidebar() {
-  const { state, followUser, unfollowUser, setSearch, searchedUsers } =
-    useContext(postContext);
+  const {
+    state,
+    followUser,
+    unfollowUser,
+    setSearch,
+    searchedUsers,
+    isDarkMode,
+  } = useContext(postContext);
   return (
     <div className="sidebar">
-      <label htmlFor="search">Search</label>
+      <label htmlFor="search"></label>
       <input
         onChange={(e) => setSearch(e.target.value)}
         type="text"
@@ -19,7 +25,7 @@ export default function Sidebar() {
       <div>
         <h2>Who to follow?</h2>
 
-        <ul>
+        <ul style={{borderTop: "1px solid"}}>
           {searchedUsers
             ?.filter((item) => item.username !== state.user?.username)
             .map((item) => (
@@ -27,10 +33,19 @@ export default function Sidebar() {
                 {state.user?.following?.find(
                   ({ username }) => username === item.username
                 ) ? (
-                  <>
-                    <Link to={`/tp/${item.username}`}>{item.username}</Link>
+                  <span className="following-user">
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: isDarkMode ? "white" : "black",
+                        fontSize: "larger",
+                      }}
+                      to={`/tp/${item.username}`}
+                    >
+                      {item.username}
+                    </Link>
 
-                    <button>
+                    <button className="create-post-btn">
                       <span className="test">Following</span>
                       <span
                         className="test2"
@@ -39,14 +54,21 @@ export default function Sidebar() {
                         Unfollow
                       </span>
                     </button>
-                  </>
+                  </span>
                 ) : (
-                  <>
-                    <Link to={`/tp/${item.username}`}>{item.username}</Link>
-                    <button onClick={() => followUser(item._id)}>
-                      Follow
-                    </button>{" "}
-                  </>
+                  <span className="follow-user">
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: isDarkMode ? "white" : "black",
+                        fontSize: "larger",
+                      }}
+                      to={`/tp/${item.username}`}
+                    >
+                      {item.username}
+                    </Link>
+                    <button onClick={() => followUser(item._id)} className="create-post-btn">Follow</button>{" "}
+                  </span>
                 )}
               </li>
             ))}
