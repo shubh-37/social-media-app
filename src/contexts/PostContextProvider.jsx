@@ -19,6 +19,8 @@ export default function PostContextProvider({ children }) {
   });
   const [search, setSearch] = useState("");
   const [postContent, setPostContent] = useState("");
+  const [followerModal, setFollowerModal] = useState(false);
+  const [followingModal, setFollowingModal] = useState(false);
 
   const posts = state.allPosts?.filter(
     ({ username }) =>
@@ -244,6 +246,10 @@ export default function PostContextProvider({ children }) {
         setIsDarkMode,
         postContent,
         setPostContent,
+        followerModal,
+        followingModal,
+        setFollowerModal,
+        setFollowingModal
       }}
     >
       {children}
