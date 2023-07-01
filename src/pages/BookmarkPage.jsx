@@ -11,10 +11,10 @@ export default function Bookmark() {
     <div className="bookmark-parent">
       <Navbar />
       <div className="bookmark-main">
-        <h2>This is the bookmark page</h2>
-        <h3>
+        <h2 className="bookmark-heading">Bookmarks</h2>
+        <h3 className="no-bookmark">
           {state.user?.bookmarks?.length === 0 && (
-            <p>There are no bookmarked posts</p>
+            "No bookmarks..."
           )}
         </h3>
         <ul>
