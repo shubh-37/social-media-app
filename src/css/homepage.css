@@ -6,6 +6,7 @@
   grid-area: main-content;
   border-right: 1px solid;
   border-left: 1px solid;
+  /* position: relative; */
 }
 
 .sidebar{
@@ -63,4 +64,17 @@ button:hover .test2{
   width: 50%;
   padding: 0.5rem;
   font-size: large;
+}
+
+.scroll-btn{
+  border: none;
+  /* height: 5rem;
+  width: 5rem; */
+  border-radius: 1.5rem;
+  padding: 1rem;
+  position: fixed;
+  /* text-align: right; */
+  /* align-self: center; */
+  /* margin: auto; */
+  /* left: 50%; */
 }
