@@ -60,10 +60,16 @@ export default function Profile() {
           </div>
           <h2>{`${state.user?.firstName} ${state.user?.lastName}`}</h2>
           <p>{`@${state.user?.username}`}</p>
-          <p onClick={() => setFollowingModal(!followingModal)}>
+          <p
+            onClick={() => setFollowingModal(!followingModal)}
+            style={{ cursor: "pointer" }}
+          >
             {state.user?.following?.length} following
           </p>
-          <p onClick={() => setFollowerModal(!followerModal)}>
+          <p
+            onClick={() => setFollowerModal(!followerModal)}
+            style={{ cursor: "pointer" }}
+          >
             {state.user?.followers?.length} follower
           </p>
           <p>
