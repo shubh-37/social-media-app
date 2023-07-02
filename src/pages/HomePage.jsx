@@ -35,7 +35,7 @@ export default function HomePage() {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "instant",
     });
     // if(window.scroll(0,0)){
     //   setIsScroll(false);
@@ -113,9 +113,19 @@ export default function HomePage() {
               {state.recent ? "Showing recent" : "Recent posts"}
             </button>
           </div>
-          <div style={{display : "flex", width: "100%", alignItems: "center", justifyContent: "center"}}>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {isScroll && (
-              <button onClick={() => clickHandler()} className="scroll-btn">
+              <button
+                onClick={() => clickHandler()}
+                className={isScroll ? "scroll-btn scroll" : "scroll-btn"}
+              >
                 Jump to Top
               </button>
             )}

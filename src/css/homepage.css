@@ -68,13 +68,11 @@ button:hover .test2{
 
 .scroll-btn{
   border: none;
-  /* height: 5rem;
-  width: 5rem; */
   border-radius: 1.5rem;
   padding: 1rem;
   position: fixed;
-  /* text-align: right; */
-  /* align-self: center; */
-  /* margin: auto; */
-  /* left: 50%; */
+}
+
+.scroll{
+  top: 2rem;
 }
