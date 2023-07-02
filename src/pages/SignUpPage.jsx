@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/signup.css";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function SignUp() {
   const { signUpUser } = useContext(authContext);
   const { isDarkMode } = useContext(postContext);
   const [user, setUser] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+  
   function userHandler(e) {
     setUser({
       ...user,
@@ -51,16 +58,32 @@ export default function SignUp() {
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          placeholder="shubh@123"
-          onChange={(e) => userHandler(e)}
-        />
-        <label htmlFor="cpassword">Confirm Password</label>
-        <input type="password" name="" id="cpassword" placeholder="shubh@123" required />
+        <div className="password-container" >
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            id="password"
+            placeholder="shubh@123"
+            required
+            onChange={(e) => userHandler(e)}
+          />
+          <span className="password-toggle" onClick={() => togglePassword()}>
+            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </span>
+        </div>
+        <label htmlFor="password">Confirm Password</label>
+        <div className="password-container" >
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            id="password"
+            placeholder="shubh@123"
+            required
+          />
+          <span className="password-toggle" onClick={() => togglePassword()}>
+            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </span>
+        </div>
         <button type="submit" className="signup-btn">Sign up</button>
         <Link to="/login" className="signup-link">Already have an account? Login now.</Link>
       </form>
