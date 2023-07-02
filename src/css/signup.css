@@ -47,3 +47,16 @@
 #fname, #lname, #username, #password, #cpassword{
   margin: 0.5rem 0rem;
 }
+
+.password-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.password-toggle{
+  padding: 10px;
+}
+
+#password{
+  flex-grow: 1;
+}
