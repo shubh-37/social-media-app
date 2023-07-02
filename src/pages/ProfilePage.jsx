@@ -20,14 +20,14 @@ export default function Profile() {
     followingModal,
     setFollowerModal,
     setFollowingModal,
+    editUser,
   } = useContext(postContext);
   const [isOpen, setIsOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({});
   const [avatar, setAvatar] = useState("");
-
+  const updatedUser = { ...state.user, ...editProfile };
   function saveProfile() {
-    dispatch({ type: "EDIT_USER", payload: { ...state.user, ...editProfile } });
-    dispatch({ type: "UPDATE_USERS" });
+    editUser(updatedUser);
     setIsOpen(false);
   }
 
