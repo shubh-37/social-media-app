@@ -10,7 +10,7 @@ export default function EditPost({
   saveChange,
 }) {
   const { state } = useContext(postContext);
-  const post = state.loggedUserPosts.find(({ _id }) => _id === postId);
+  const post = state.allPosts.find(({ _id }) => _id === postId);
   useEffect(() => window.scrollTo(0, 0), []);
   return (
     <>
@@ -39,7 +39,7 @@ export default function EditPost({
               id=""
               cols="10"
               rows="5"
-              defaultValue={post.content}
+              defaultValue={post?.content}
               className="edit"
               onChange={(e) => saveChange(e)}
             ></textarea>
