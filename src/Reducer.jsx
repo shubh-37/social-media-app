@@ -56,6 +56,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         user: updatedUser,
+        allUsers: [...state.allUsers, updatedUser],
       };
     }
     case "UPDATE_USERS": {
