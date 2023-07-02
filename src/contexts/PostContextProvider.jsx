@@ -221,6 +221,23 @@ export default function PostContextProvider({ children }) {
       console.log(error);
     }
   }
+
+  async function editUser(userData) {
+    try {
+      const response = await fetch(`/api/users/edit`, {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+        body: JSON.stringify({ userData }),
+      });
+      const data = await response.json();
+      dispatch({ type: "USER", payload: { user: data.user } });
+      dispatch({ type: "UPDATE_USERS" });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     getAllPosts();
     getAllUsers();
@@ -249,7 +266,8 @@ export default function PostContextProvider({ children }) {
         followerModal,
         followingModal,
         setFollowerModal,
-        setFollowingModal
+        setFollowingModal,
+        editUser,
       }}
     >
       {children}
