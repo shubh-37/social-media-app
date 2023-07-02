@@ -58,18 +58,6 @@ export default function reducer(state, action) {
         user: updatedUser,
       };
     }
-    case "EDIT_USER":
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-          bio: action.payload.bio,
-          portfolio_link: action.payload.portfolio_link,
-          avatar: action.payload.avatar,
-        },
-      };
     case "UPDATE_USERS": {
       const updatedUsers = state.allUsers?.reduce(
         (acc, item) =>
