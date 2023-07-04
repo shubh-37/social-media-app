@@ -7,6 +7,7 @@
   border-right: 1px solid;
   border-left: 1px solid;
   /* position: relative; */
+  height: fit-content;
 }
 
 .sidebar{
