@@ -13,6 +13,11 @@ export default function Explore() {
       <Navbar />
       <div className="explore-main">
         <h2 style={{ margin: "1.5rem 1rem" }}>Explore</h2>
+        <h3 className="no-bookmark">
+          {state.allPosts?.length === 0 && (
+            "No posts to show..."
+          )}
+        </h3>
         <ul>
           {state?.allPosts?.map((item) => (
             <li key={item._id}>

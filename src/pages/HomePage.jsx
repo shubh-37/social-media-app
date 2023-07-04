@@ -129,7 +129,11 @@ export default function HomePage() {
               </button>
             )}
           </div>
-
+          <h3 className="no-bookmark">
+          {recentPosts.length === 0 && (
+            "No posts to show..."
+          )}
+        </h3>
           <ul>
             {recentPosts.map((item) => (
               <li key={item._id}>
