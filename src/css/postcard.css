@@ -10,7 +10,8 @@
 }
 
 .post-parent{
-  border: 1px solid;
+  border-top: 1px solid #2563eb;
+  border-bottom: 1px solid #2563eb;
   margin-bottom: 0.1rem;
   padding: 0.8rem;
 }
