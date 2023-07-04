@@ -21,6 +21,8 @@ export default function PostCard({ item }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState("");
   const [postContent, setPostContent] = useState("");
+  const formattedDate = new Date(item.createdAt).toDateString();
+  
   function changeHandler(e, postId) {
     if (e.target.value === "edit") {
       setId(postId);
@@ -71,7 +73,7 @@ export default function PostCard({ item }) {
       </div>
 
       <p>{item.content}</p>
-      <p style={{ color: "grey" }}>{item.createdAt}</p>
+      <p style={{ color: "grey" }}>{formattedDate}</p>
       <div className="post-icons">
         {item.likes.likedBy.find(
           ({ username }) => username === state.user.username
