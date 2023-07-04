@@ -1,17 +1,22 @@
 .home-navigate{
   grid-area: home-navigate;
+  position: sticky;
+  height: fit-content;
+  top: 0;
 }
 
 .main-content{
   grid-area: main-content;
   border-right: 1px solid;
   border-left: 1px solid;
-  /* position: relative; */
   height: fit-content;
 }
 
 .sidebar{
   grid-area: side-bar;
+  position: sticky;
+  height: fit-content;
+  top: 0;
 }
 
 .home{
@@ -36,19 +41,16 @@ button:hover .test2{
 }
 
 .create-post{
-  /* background-color: #dbeafe; */
   border-bottom: 1px solid;
 }
 #new-post{
   border: none;
   margin: 0.5rem;
   width: 15rem;
-  /* background-color: #dbeafe; */
   padding: 0.5rem;
   height: 4rem;
   outline :none;
   font-size: large;
-  /* border-bottom: 1px solid; */
 }
 
 .fa-image, .fa-smile-o{
