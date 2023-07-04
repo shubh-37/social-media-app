@@ -77,7 +77,7 @@ export default function PostContextProvider({ children }) {
       });
       const data = await response.json();
       dispatch({
-        type: "LIKE_POST",
+        type: "LIKE_DISLIKE_POST",
         payload: { post: data.posts, id: id },
       });
     } catch (error) {
@@ -131,7 +131,7 @@ export default function PostContextProvider({ children }) {
       });
       const data = await response.json();
       dispatch({
-        type: "DISLIKE_POST",
+        type: "LIKE_DISLIKE_POST",
         payload: { post: data.posts, id: id },
       });
     } catch (error) {
