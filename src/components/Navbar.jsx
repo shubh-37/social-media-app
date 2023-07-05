@@ -18,13 +18,17 @@ export default function Navbar() {
           }}
           to="/"
         >
-          <span
-            style={{ border: isDarkMode ? "1px solid #2563eb" : "" }}
-            className="fa fa-home"
-          >
-            {" "}
-            Home
-          </span>
+          {({ isActive }) => (
+            <span
+              className="fa fa-home"
+              style={{
+                border: isDarkMode ? "1px solid #2563eb" : "",
+                backgroundColor: isActive ? "#3b82f6" : "",
+              }}
+            >{" "}
+              Home
+            </span>
+          )}
         </NavLink>
         <NavLink
           style={{
@@ -33,13 +37,17 @@ export default function Navbar() {
           }}
           to="/explore"
         >
-          <span
-            style={{ border: isDarkMode ? "1px solid #2563eb" : "" }}
-            className="fa fa-rocket"
-          >
-            {" "}
-            Explore
-          </span>
+          {({ isActive }) => (
+            <span
+              className="fa fa-rocket"
+              style={{
+                border: isDarkMode ? "1px solid #2563eb" : "",
+                backgroundColor: isActive ? "#3b82f6" : "",
+              }}
+            >{" "}
+              Explore
+            </span>
+          )}
         </NavLink>
         <NavLink
           style={{
@@ -48,13 +56,17 @@ export default function Navbar() {
           }}
           to="/bookmark"
         >
-          <span
-            style={{ border: isDarkMode ? "1px solid #2563eb" : "" }}
-            className="fa fa-bookmark-o"
-          >
-            {" "}
-            Bookmarks
-          </span>
+          {({ isActive }) => (
+            <span
+              className="fa fa-bookmark-o"
+              style={{
+                border: isDarkMode ? "1px solid #2563eb" : "",
+                backgroundColor: isActive ? "#3b82f6" : "",
+              }}
+            >{" "}
+              Bookmarks
+            </span>
+          )}
         </NavLink>
         <NavLink
           style={{
@@ -63,13 +75,17 @@ export default function Navbar() {
           }}
           to="/profile"
         >
-          <span
-            style={{ border: isDarkMode ? "1px solid #2563eb" : "" }}
-            className="fa fa-user-o"
-          >
-            {" "}
-            Profile
-          </span>
+          {({ isActive }) => (
+            <span
+              className="fa fa-user-o"
+              style={{
+                border: isDarkMode ? "1px solid #2563eb" : "",
+                backgroundColor: isActive ? "#3b82f6" : "",
+              }}
+            >{" "}
+              Profile
+            </span>
+          )}
         </NavLink>
         <button className="create-post-btn" onClick={() => setIsPostOpen(true)}>
           Create New post
@@ -91,7 +107,7 @@ export default function Navbar() {
           </Link>
         )}
       </div>
-      {isPostOpen && <CreatePost closeModal={setIsPostOpen}/>}
+      {isPostOpen && <CreatePost closeModal={setIsPostOpen} />}
     </div>
   );
 }
