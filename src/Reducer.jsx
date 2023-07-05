@@ -16,11 +16,36 @@ export default function reducer(state, action) {
         ...state,
         loggedUserPosts: action.payload,
       };
-    case "LIKE_POST":
-      return {
-        ...state,
-        allPosts: action.payload.post,
-      };
+    case "LIKE_DISLIKE_POST": {
+      const containsPost = state.user?.bookmarks?.find(
+        ({ _id }) => _id === action.payload?.id
+      );
+      if (containsPost) {
+        const likedPost = action.payload?.post?.find(
+          ({ _id }) => _id === action?.payload?.id
+        );
+        const updatedBookmarks = state.user?.bookmarks?.reduce(
+          (acc, item) =>
+            item._id === likedPost._id
+              ? [...acc, likedPost]
+              : [...acc,{ ...item}],
+          []
+        );
+        return {
+          ...state,
+          allPosts: action.payload.post,
+          user: {
+            ...state.user,
+            bookmarks: updatedBookmarks,
+          },
+        };
+      } else {
+        return {
+          ...state,
+          allPosts: action.payload.post,
+        };
+      }
+    }
     case "BOOKMARK_POST":
       return {
         ...state,
@@ -28,11 +53,6 @@ export default function reducer(state, action) {
           ...state.user,
           bookmarks: action.payload,
         },
-      };
-    case "DISLIKE_POST":
-      return {
-        ...state,
-        allPosts: action.payload.post,
       };
     case "USER": {
       const updatedUsers = state.allUsers?.reduce(

@@ -37,9 +37,6 @@ export default function HomePage() {
       left: 0,
       behavior: "instant",
     });
-    // if(window.scroll(0,0)){
-    //   setIsScroll(false);
-    // }
     setTimeout(() => setIsScroll(false), 500);
   }
   return (
@@ -76,7 +73,9 @@ export default function HomePage() {
             }}
           >
             <div>
-              <span className="fa fa-image"></span>
+              <label htmlFor="image-local"><span className="fa fa-image"></span></label>
+              <input type="file" name="" id="image-local" style={{display: "none"}} />
+              
               <span className="fa fa-smile-o"></span>
             </div>
 
@@ -130,7 +129,11 @@ export default function HomePage() {
               </button>
             )}
           </div>
-
+          <h3 className="no-bookmark">
+          {recentPosts.length === 0 && (
+            "No posts to show..."
+          )}
+        </h3>
           <ul>
             {recentPosts.map((item) => (
               <li key={item._id}>

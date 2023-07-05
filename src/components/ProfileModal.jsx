@@ -7,6 +7,7 @@ export default function ProfileModal({
   updateProfile,
   saveProfile,
   setAvatar,
+  avatar
 }) {
   const avatarLinks = [
     "https://i.ibb.co/jRVZ3Xp/avataaars-6.png",
@@ -40,6 +41,7 @@ export default function ProfileModal({
             <h3 style={{ color: "black" }}>Edit your personal information</h3>
           </div>
           <div className="modal-body">
+            <img src={avatar}  alt="" width="60px"/>
             <ul className="avatars">
               {avatarLinks.map((item) => (
                 <li style={{ cursor: "pointer" }}>
@@ -54,7 +56,7 @@ export default function ProfileModal({
             <input
               type="text"
               name="firstName"
-              id=""
+              id="finame"
               defaultValue={state.user.firstName}
               onChange={(e) => updateProfile(e)}
             />
@@ -64,7 +66,7 @@ export default function ProfileModal({
             <input
               type="text"
               name="lastName"
-              id=""
+              id="lsname"
               defaultValue={state.user.lastName}
               onChange={(e) => updateProfile(e)}
             />
@@ -74,7 +76,7 @@ export default function ProfileModal({
             <input
               type="text"
               name="bio"
-              id=""
+              id="bio"
               defaultValue={state.user.bio}
               onChange={(e) => updateProfile(e)}
             />
@@ -84,7 +86,7 @@ export default function ProfileModal({
             <input
               type="text"
               name="portfolio_link"
-              id=""
+              id="pf-link"
               defaultValue={state.user.portfolio_link}
               onChange={(e) => updateProfile(e)}
             />

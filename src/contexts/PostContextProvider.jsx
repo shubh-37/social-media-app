@@ -77,7 +77,7 @@ export default function PostContextProvider({ children }) {
       });
       const data = await response.json();
       dispatch({
-        type: "LIKE_POST",
+        type: "LIKE_DISLIKE_POST",
         payload: { post: data.posts, id: id },
       });
     } catch (error) {
@@ -131,7 +131,7 @@ export default function PostContextProvider({ children }) {
       });
       const data = await response.json();
       dispatch({
-        type: "DISLIKE_POST",
+        type: "LIKE_DISLIKE_POST",
         payload: { post: data.posts, id: id },
       });
     } catch (error) {
@@ -185,6 +185,9 @@ export default function PostContextProvider({ children }) {
         body: JSON.stringify({ postData: { content } }),
       });
       const data = await response.json();
+      data.posts.sort(
+        (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+      )
       dispatch({ type: "GET_ALL_POSTS", payload: data.posts });
     } catch (error) {
       console.log(error);

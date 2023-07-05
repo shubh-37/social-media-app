@@ -117,6 +117,7 @@ export default function Profile() {
           updateProfile={updateProfile}
           saveProfile={saveProfile}
           setAvatar={withImage}
+          avatar={avatar}
         />
       )}
       {followerModal && (
