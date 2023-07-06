@@ -6,7 +6,7 @@ import "../css/editpost.css";
 export default function EditPost({
   postId,
   closeModal,
-  saveProfile,
+  editPost,
   saveChange,
 }) {
   const { state } = useContext(postContext);
@@ -48,7 +48,7 @@ export default function EditPost({
             <button onClick={() => closeModal(false)} className="cancel-btn">
               Cancel
             </button>
-            <button onClick={() => saveProfile()}>Edit post</button>
+            <button onClick={() => editPost()}>Edit post</button>
           </div>
         </div>
       </div>
