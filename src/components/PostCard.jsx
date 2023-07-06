@@ -13,16 +13,18 @@ export default function PostCard({ item }) {
     bookmarkHandler,
     deletePost,
     editPost,
-    isDarkMode
+    isDarkMode,
   } = useContext(postContext);
 
-  const avatarObj = state.allUsers?.find(({username}) => username === item.username);
+  const avatarObj = state.allUsers?.find(
+    ({ username }) => username === item.username
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState("");
   const [postContent, setPostContent] = useState("");
   const formattedDate = new Date(item.createdAt).toDateString();
-  
+
   function changeHandler(e, postId) {
     if (e.target.value === "edit") {
       setId(postId);
@@ -33,10 +35,16 @@ export default function PostCard({ item }) {
       setIsOpen(false);
     }
   }
-  function saveProfile() {
-    editPost(item._id, postContent);
-    setModalOpen(false);
-    setIsOpen(false);
+  function savePost() {
+    if (postContent === "") {
+      editPost(item._id, item.content);
+      setModalOpen(false);
+      setIsOpen(false);
+    } else {
+      editPost(item._id, postContent);
+      setModalOpen(false);
+      setIsOpen(false);
+    }
   }
 
   function saveChange(e) {
@@ -44,9 +52,18 @@ export default function PostCard({ item }) {
   }
 
   return (
-    <div style={{backgroundColor: isDarkMode ? "#0f172a": "#dbeafe", color: isDarkMode ? "white" : "black"}} className="post-parent">
+    <div
+      style={{
+        backgroundColor: isDarkMode ? "#0f172a" : "#dbeafe",
+        color: isDarkMode ? "white" : "black",
+      }}
+      className="post-parent"
+    >
       <div className="heading-post">
-        <span className="avatar"><img src={avatarObj?.avatar} alt="" /></span><h3 className="username">{item?.username}</h3>
+        <span className="avatar">
+          <img src={avatarObj?.avatar} alt="" />
+        </span>
+        <h3 className="username">{item?.username}</h3>
         {item?.username === state.user?.username && (
           <>
             {isOpen ? (
@@ -82,12 +99,11 @@ export default function PostCard({ item }) {
             className="fa fa-heart"
             onClick={() => dislikePostHandler(item._id)}
           >
-            <span style={{margin: "0.4rem"}}>{item.likes.likeCount}</span>
-            
+            <span style={{ margin: "0.4rem" }}>{item.likes.likeCount}</span>
           </span>
         ) : (
           <span className="	fa fa-heart-o" onClick={() => likeHandler(item._id)}>
-            <span style={{margin: "0.3rem"}}>{item.likes.likeCount}</span>
+            <span style={{ margin: "0.3rem" }}>{item.likes.likeCount}</span>
           </span>
         )}
 
@@ -107,7 +123,7 @@ export default function PostCard({ item }) {
         {modalOpen && (
           <EditPost
             postId={id}
-            saveProfile={saveProfile}
+            editPost={savePost}
             saveChange={saveChange}
             closeModal={setModalOpen}
           />
