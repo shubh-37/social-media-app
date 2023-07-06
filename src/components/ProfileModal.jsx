@@ -95,7 +95,7 @@ export default function ProfileModal({
             <button onClick={() => closeModal(false)} className="cancel-btn">
               Cancel
             </button>
-            <button onClick={() => saveProfile()}>Edit Profile</button>
+            <button onClick={() => saveProfile()}>Update Profile</button>
           </div>
         </div>
       </div>
