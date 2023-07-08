@@ -2,8 +2,6 @@
   border: 1px solid #2563eb;
     display: flex;
     flex-direction: column;
-    /* width: 30%; */
-    /* height: 60vh; */
     align-items: center;
     padding: 1rem;
     position: absolute;
@@ -41,7 +39,6 @@
 .form-parent{
   display: flex;
   flex-direction: column;
-  justify-content: space-betwee;
 }
 
 #fname, #lname, #username, #password, #cpassword{
