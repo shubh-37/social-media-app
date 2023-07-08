@@ -15,17 +15,24 @@ export default function AuthProvider({ children }) {
   async function signUpUser(user) {
     try {
       const response = await axios.post("api/auth/signup", user);
-      if (response.data.encodedToken) {
-        localStorage.setItem("token", response.data.encodedToken);
-        dispatch({
-          type: "NEW_USER",
-          payload: { user: response.data.createdUser },
-        });
-        setIslogin(true);
-        navigate("/profile");
+      if (response.status === 201) {
+        if (response.data.encodedToken) {
+          localStorage.setItem("token", response.data.encodedToken);
+          dispatch({
+            type: "NEW_USER",
+            payload: { user: response.data.createdUser },
+          });
+          setIslogin(true);
+          navigate("/profile");
+          return "success";
+        }
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 500) {
+        console.log(error.response);
+      } else if (error.response.status === 422) {
+        return "failure";
+      }
     }
   }
 
@@ -40,15 +47,15 @@ export default function AuthProvider({ children }) {
             payload: { user: response.data.foundUser },
           });
           setIslogin(true);
-          navigate("/profile");
-          return 'success';
+          navigate("/");
+          return "success";
         }
       }
     } catch (error) {
       if (error.response.status === 500) {
         console.log(error.response);
       } else if (error.response.status === 404) {
-          return 'failure';
+        return "failure";
       }
     }
   }
@@ -61,7 +68,6 @@ export default function AuthProvider({ children }) {
     try {
       const response = await axios.post("/api/auth/login", guestUser);
       if (response.data.encodedToken) {
-        console.log(response);
         localStorage.setItem("token", response.data.encodedToken);
         dispatch({ type: "USER", payload: { user: response.data.foundUser } });
         setIslogin(true);
