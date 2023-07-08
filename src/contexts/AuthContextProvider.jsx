@@ -32,14 +32,24 @@ export default function AuthProvider({ children }) {
   async function loginUser(user) {
     try {
       const response = await axios.post("api/auth/login", user);
-      if (response.data.encodedToken) {
-        localStorage.setItem("token", response.data.encodedToken);
-        dispatch({ type: "USER", payload: { user: response.data.foundUser } });
-        setIslogin(true);
-        navigate("/profile");
+      if (response.status === 200) {
+        if (response.data.encodedToken) {
+          localStorage.setItem("token", response.data.encodedToken);
+          dispatch({
+            type: "USER",
+            payload: { user: response.data.foundUser },
+          });
+          setIslogin(true);
+          navigate("/profile");
+          return 'success';
+        }
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 500) {
+        console.log(error.response);
+      } else if (error.response.status === 404) {
+          return 'failure';
+      }
     }
   }
 
@@ -51,6 +61,7 @@ export default function AuthProvider({ children }) {
     try {
       const response = await axios.post("/api/auth/login", guestUser);
       if (response.data.encodedToken) {
+        console.log(response);
         localStorage.setItem("token", response.data.encodedToken);
         dispatch({ type: "USER", payload: { user: response.data.foundUser } });
         setIslogin(true);
@@ -62,7 +73,7 @@ export default function AuthProvider({ children }) {
   }
 
   function logoutUser() {
-    dispatch({type: "LOGOUT_USER"})
+    dispatch({ type: "LOGOUT_USER" });
     localStorage.removeItem("token");
     setIslogin(false);
   }
