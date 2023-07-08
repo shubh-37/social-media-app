@@ -13,6 +13,8 @@ import Login from "./pages/LoginPage";
 import Profile from "./pages/ProfilePage";
 import SignUp from "./pages/SignUpPage";
 import ThirdPerson from "./pages/ThirdPersonPage";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { isDarkMode } = useContext(postContext);
@@ -79,6 +81,7 @@ function App() {
               }
             />
           </Routes>
+          <ToastContainer />
         </>
       )}
     </div>
