@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const { isDarkMode } = useContext(postContext);
@@ -14,15 +15,47 @@ export default function Login() {
     setShowPassword((prev) => !prev);
   };
 
+  function notify(event, type) {
+    event.preventDefault();
+    if (type === "failure") {
+      toast.error("User not found!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkMode ? "light" : "dark",
+      });
+    } else {
+      toast.success("Login successful!", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkMode ? "light" : "dark",
+      });
+    }
+  }
+
   function inputHandler(e) {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   }
-  function submitLogin(e) {
+  async function submitLogin(e) {
     e.preventDefault();
-    loginUser(user);
+    const response = await loginUser(user);
+    if (response === "success") {
+      notify(e, response);
+    } else {
+      notify(e, response);
+    }
   }
   return (
     <div
@@ -44,7 +77,7 @@ export default function Login() {
           onChange={(e) => inputHandler(e)}
         />
         <label htmlFor="password">Password</label>
-        <div className="password-container" >
+        <div className="password-container">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -68,6 +101,7 @@ export default function Login() {
           onClick={(e) => {
             e.preventDefault();
             guestLogin();
+            notify(e, "success");
           }}
           className="signup-btn"
         >
