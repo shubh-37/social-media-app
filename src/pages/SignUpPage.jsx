@@ -5,6 +5,7 @@ import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/signup.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const { signUpUser } = useContext(authContext);
@@ -15,19 +16,55 @@ export default function SignUp() {
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
-  
+  function notify(event, type) {
+    event.preventDefault();
+    if (type === "failure") {
+      toast.error("Username already found!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkMode ? "light" : "dark",
+      });
+    } else {
+      toast.success("Sign up successful!", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isDarkMode ? "light" : "dark",
+      });
+    }
+  }
   function userHandler(e) {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   }
-  function submitUser(e) {
+  async function submitUser(e) {
     e.preventDefault();
-    signUpUser(user);
+    const response = await signUpUser(user);
+    if (response === "success") {
+      notify(e, response);
+    } else {
+      notify(e, response);
+    }
   }
   return (
-    <div className="signup-parent" style={{backgroundColor: isDarkMode ? "#bfdbfe": "#dbeafe", color: isDarkMode ? "black" : ""}} >
+    <div
+      className="signup-parent"
+      style={{
+        backgroundColor: isDarkMode ? "#bfdbfe" : "#dbeafe",
+        color: isDarkMode ? "black" : "",
+      }}
+    >
       <h2 className="signup-heading">Sign up now</h2>
       <form onSubmit={(e) => submitUser(e)} className="form-parent">
         <label htmlFor="fname">First Name</label>
@@ -58,7 +95,7 @@ export default function SignUp() {
           onChange={(e) => userHandler(e)}
         />
         <label htmlFor="password">Password</label>
-        <div className="password-container" >
+        <div className="password-container">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -72,7 +109,7 @@ export default function SignUp() {
           </span>
         </div>
         <label htmlFor="password">Confirm Password</label>
-        <div className="password-container" >
+        <div className="password-container">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -84,8 +121,12 @@ export default function SignUp() {
             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
           </span>
         </div>
-        <button type="submit" className="signup-btn">Sign up</button>
-        <Link to="/login" className="signup-link">Already have an account? Login now.</Link>
+        <button type="submit" className="signup-btn">
+          Sign up
+        </button>
+        <Link to="/login" className="signup-link">
+          Already have an account? Login now.
+        </Link>
       </form>
     </div>
   );
