@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../contexts/AuthContextProvider";
 import { postContext } from "../contexts/PostContextProvider";
 import "../css/landingpage.css";
 
 export default function LandingPage() {
   const { isDarkMode } = useContext(postContext);
+  const { guestLogin } = useContext(authContext);
   return (
     <div className="landing-parent">
       <div className="landing-content">
@@ -51,9 +53,9 @@ export default function LandingPage() {
           </div>
         </div>
         <div>
-          <Link to="/signup" style={{ textDecoration: "none", color: "white" }}>
-            <button className="join-btn">Join Now</button>
-          </Link>
+          <button className="join-btn" onClick={() => guestLogin()}>
+            Join Now as Guest
+          </button>
           <span className="signup-link">
             <Link
               to="/login"
